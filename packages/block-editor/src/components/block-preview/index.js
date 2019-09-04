@@ -19,7 +19,7 @@ import BlockList from '../block-list';
 import { getBlockPreviewContainerDOMNode } from '../../utils/dom';
 
 
-function ScaledBlockPreview( { blocks, viewportWidth, onReady, padding = 0 } ) {
+function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimentalOnReady } ) {
 	const previewRef = useRef( null );
 
 	const [ isReady, setIsReady ] = useState( false );
@@ -63,7 +63,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, onReady, padding = 0 } ) {
 				// Hack: we need  to reset the scaled elements margins
 				previewElement.style.marginTop = '0';
 
-				onReady( {
+				__experimentalOnReady( {
 					scale,
 					position: { x: offsetX * scale, y: offsetY },
 					ref: previewRef,
@@ -72,7 +72,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, onReady, padding = 0 } ) {
 				const containerElementRect = containerElement.getBoundingClientRect();
 				const scale = containerElementRect.width / viewportWidth;
 				setPreviewScale( scale );
-				onReady( { scale, ref: previewRef } );
+				__experimentalOnReady( { scale, ref: previewRef } );
 			}
 
 			setIsReady( true );
@@ -113,7 +113,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, onReady, padding = 0 } ) {
 	);
 }
 
-export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, onReady = noop } ) {
+export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, __experimentalOnReady = noop } ) {
 	const renderedBlocks = useMemo( () => castArray( blocks ), [ blocks ] );
 	const [ recompute, triggerRecompute ] = useReducer( ( state ) => state + 1, 0 );
 	useLayoutEffect( triggerRecompute, [ blocks ] );
@@ -134,7 +134,7 @@ export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, 
 				blocks={ renderedBlocks }
 				viewportWidth={ viewportWidth }
 				padding={ padding }
-				onReady={ onReady }
+				__experimentalOnReady={ __experimentalOnReady }
 			/>
 		</BlockEditorProvider>
 	);
