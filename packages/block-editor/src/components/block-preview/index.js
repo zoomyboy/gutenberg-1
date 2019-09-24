@@ -56,6 +56,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimenta
 				const offsetX = ( -( scaledElementRect.left - containerElementRect.left ) * scale ) + padding;
 				const offsetY = ( containerElementRect.height > scaledElementRect.height * scale ) ?
 					( ( containerElementRect.height - ( scaledElementRect.height * scale ) ) / 2 ) + padding : 0;
+				const position = { x: offsetX * scale, y: offsetY };
 
 				setPreviewScale( scale );
 				setPosition( { x: offsetX, y: offsetY } );
@@ -65,7 +66,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimenta
 
 				__experimentalOnReady( {
 					scale,
-					position: { x: offsetX * scale, y: offsetY },
+					position,
 					previewContainerRef: previewRef,
 				} );
 			} else {
