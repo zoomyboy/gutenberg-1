@@ -26,7 +26,8 @@ const getOnlineStyles = ( scale, x, y, isReady, width ) => ( {
 	width,
 } );
 
-function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimentalOnReady } ) {
+
+function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, delay } ) {
 	const previewRef = useRef( null );
 
 	const [ isReady, setIsReady ] = useState( false );
@@ -89,7 +90,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimenta
 				previewContainerRef: previewRef,
 				styles: getOnlineStyles( scale, _x, _y, true, viewportWidth ),
 			} );
-		}, 0 );
+		}, delay );
 
 		// Cleanup
 		return () => {
@@ -121,7 +122,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimenta
 	);
 }
 
-export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, __experimentalOnReady = noop } ) {
+export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, __experimentalOnReady = noop, __experimentalDelay = 100 } ) {
 	const renderedBlocks = useMemo( () => castArray( blocks ), [ blocks ] );
 	const [ recompute, triggerRecompute ] = useReducer( ( state ) => state + 1, 0 );
 	useLayoutEffect( triggerRecompute, [ blocks ] );
@@ -142,7 +143,8 @@ export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, 
 				blocks={ renderedBlocks }
 				viewportWidth={ viewportWidth }
 				padding={ padding }
-				__experimentalOnReady={ __experimentalOnReady }
+				onReady={ __experimentalOnReady }
+				delay={ __experimentalDelay }
 			/>
 		</BlockEditorProvider>
 	);
