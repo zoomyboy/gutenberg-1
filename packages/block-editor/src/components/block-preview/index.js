@@ -89,7 +89,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, __experimenta
 				previewContainerRef: previewRef,
 				styles: getOnlineStyles( scale, _x, _y, true, viewportWidth ),
 			} );
-		}, 100 );
+		}, 0 );
 
 		// Cleanup
 		return () => {
