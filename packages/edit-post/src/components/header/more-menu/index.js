@@ -41,7 +41,7 @@ const MoreMenu = ({ showIconLabel }) => (
 				<PluginMoreMenuGroup.Slot fillProps={ { onClose } } />
 				<ToolsMoreMenuGroup.Slot fillProps={ { onClose } } />
 				<MenuGroup>
-					<OptionsMenuItem onSelect={ onClose } />
+					<OptionsMenuItem />
 				</MenuGroup>
 			</>
 		) }
