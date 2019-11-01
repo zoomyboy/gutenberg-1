@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __, sprintf } from '@wordpress/i18n';
@@ -23,6 +28,7 @@ function ResponsiveBlockControl( props ) {
 		renderDefaultControl,
 		renderResponsiveControls,
 		isResponsive = false,
+		className = '',
 		defaultLabel = {
 			id: 'all',
 			label: __( 'All' ), /* translators: 'Label. Used to signify a layout property (eg: margin, padding) will apply uniformly to all screensizes.' */
@@ -65,7 +71,7 @@ function ResponsiveBlockControl( props ) {
 
 	return (
 
-		<fieldset className="block-editor-responsive-block-control">
+		<fieldset className={ classnames( className, 'block-editor-responsive-block-control' ) }>
 			<legend className="block-editor-responsive-block-control__title">{ title }</legend>
 
 			<div className="block-editor-responsive-block-control__inner">

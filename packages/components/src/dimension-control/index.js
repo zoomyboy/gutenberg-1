@@ -54,6 +54,7 @@ export function DimensionControl( props ) {
 		<Fragment>
 			{ icon && (
 				<Icon
+					className="block-editor-dimension-control__icon"
 					icon={ icon }
 				/>
 			) }
