@@ -4,6 +4,8 @@
 import {
 	useMemo,
 	Fragment,
+	useState,
+	useEffect,
 } from '@wordpress/element';
 import {
 	InnerBlocks,
@@ -11,6 +13,8 @@ import {
 	BlockControls,
 	__experimentalUseColors,
 } from '@wordpress/block-editor';
+
+import apiFetch from '@wordpress/api-fetch';
 
 import { createBlock } from '@wordpress/blocks';
 import { withSelect, withDispatch } from '@wordpress/data';
@@ -25,6 +29,7 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
+import { addQueryArgs } from '@wordpress/url';
 
 /**
  * Internal dependencies
@@ -36,7 +41,7 @@ import BlockColorsStyleSelector from './block-colors-selector';
 function Navigation( {
 	attributes,
 	clientId,
-	pages,
+
 	isRequestingPages,
 	hasResolvedPages,
 	setAttributes,
@@ -50,8 +55,13 @@ function Navigation( {
 	const { TextColor } = __experimentalUseColors(
 		[ { name: 'textColor', property: 'color' } ],
 	);
+
+	const [ pages, setPages ] = useState( null );
+
 	/* eslint-enable @wordpress/no-unused-vars-before-return */
 	const { navigatorToolbarButton, navigatorModal } = useBlockNavigator( clientId );
+
+	let isStillMounted = true;
 
 	// Builds navigation links from default Pages.
 	const defaultPagesNavigationItems = useMemo(
@@ -75,6 +85,35 @@ function Navigation( {
 		},
 		[ pages ]
 	);
+
+	useEffect( () => {
+		const baseUrl = '/wp/v2/pages';
+		const filterDefaultPages = {
+			parent: 0,
+			order: 'asc',
+			orderby: 'id',
+			context: 'view',
+		};
+		apiFetch( {
+			path: addQueryArgs( baseUrl, filterDefaultPages ),
+		} ).then(
+			( pagesList ) => {
+				if ( isStillMounted ) {
+					setPages( pagesList );
+				}
+			}
+		).catch(
+			() => {
+				if ( isStillMounted ) {
+					setPages( [] );
+				}
+			}
+		);
+
+		return () => {
+			isStillMounted = false;
+		};
+	}, [] );
 
 	//
 	// HANDLERS
@@ -205,7 +244,6 @@ export default compose( [
 
 		return {
 			hasExistingNavItems: !! innerBlocks.length,
-			pages: select( 'core' ).getEntityRecords( 'postType', 'page', filterDefaultPages ),
 			isRequestingPages: select( 'core/data' ).isResolving( ...pagesSelect ),
 			hasResolvedPages: select( 'core/data' ).hasFinishedResolution( ...pagesSelect ),
 		};
