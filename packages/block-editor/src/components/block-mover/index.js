@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { first, last, partial, castArray } from 'lodash';
+import { first, last, partial } from 'lodash';
 import classnames from 'classnames';
 
 /**
@@ -18,7 +18,7 @@ import { withInstanceId, compose } from '@wordpress/compose';
  * Internal dependencies
  */
 import { getBlockMoverDescription } from './mover-description';
-import { leftArrow, rightArrow, upArrow, downArrow, dragHandle } from './icons';
+import { leftArrow, rightArrow, upArrow, downArrow } from './icons';
 import BlockDraggable from '../block-draggable';
 
 export class BlockMover extends Component {
@@ -46,7 +46,7 @@ export class BlockMover extends Component {
 	render() {
 		const { onMoveUp, onMoveDown, __experimentalOrientation: orientation, isRTL, isFirst, isLast, clientIds, blockType, firstIndex, isLocked, instanceId, isHidden, rootClientId } = this.props;
 		const { isFocused } = this.state;
-		const blocksCount = castArray( clientIds ).length;
+		const blocksCount = clientIds.length;
 		if ( isLocked || ( isFirst && isLast && ! rootClientId ) ) {
 			return null;
 		}
@@ -86,75 +86,71 @@ export class BlockMover extends Component {
 		// to an unfocused state (body as active element) without firing blur on,
 		// the rendering parent, leaving it unable to react to focus out.
 		return (
-			<ToolbarGroup className={ classnames( 'block-editor-block-mover', { 'is-visible': isFocused || ! isHidden, 'is-horizontal': orientation === 'horizontal' } ) }>
-				<Button
-					className="block-editor-block-mover__control"
-					onClick={ isFirst ? null : onMoveUp }
-					icon={ getArrowIcon( 'up' ) }
-					// translators: %s: Horizontal direction of block movement ( left, right )
-					label={ sprintf( __( 'Move %s' ), getMovementDirection( 'up' ) ) }
-					aria-describedby={ `block-editor-block-mover__up-description-${ instanceId }` }
-					aria-disabled={ isFirst }
-					onFocus={ this.onFocus }
-					onBlur={ this.onBlur }
-				/>
+			<BlockDraggable clientIds={ clientIds }>
+				{ ( { onDraggableStart, onDraggableEnd } ) => (
+					<div
+						className={ classnames( 'block-editor-block-mover', {
+							'is-visible': isFocused || ! isHidden, 'is-horizontal': orientation === 'horizontal',
+						} ) }						draggable
+						onDragStart={ onDraggableStart }
+						onDragEnd={ onDraggableEnd }
+					>
+						<ToolbarGroup>
+							<Button
+								className="block-editor-block-mover__control"
+								onClick={ isFirst ? null : onMoveUp }
+								icon={ getArrowIcon( 'up' ) }
+								// translators: %s: Horizontal direction of block movement ( left, right )
+								label={ sprintf( __( 'Move %s' ), getMovementDirection( 'up' ) ) }
+								aria-describedby={ `block-editor-block-mover__up-description-${ instanceId }` }
+								aria-disabled={ isFirst }
+								onFocus={ this.onFocus }
+								onBlur={ this.onBlur }
+							/>
 
-				<BlockDraggable clientIds={ clientIds }>
-					{ ( { onDraggableStart, onDraggableEnd } ) => (
-						<Button
-							icon={ dragHandle }
-							className="block-editor-block-mover__control-drag-handle block-editor-block-mover__control"
-							aria-hidden="true"
-							// Should not be able to tab to drag handle as this
-							// button can only be used with a pointer device.
-							tabIndex="-1"
-							onDragStart={ onDraggableStart }
-							onDragEnd={ onDraggableEnd }
-							draggable
-						/>
-					) }
-				</BlockDraggable>
-
-				<Button
-					className="block-editor-block-mover__control"
-					onClick={ isLast ? null : onMoveDown }
-					icon={ getArrowIcon( 'down' ) }
-					// translators: %s: Horizontal direction of block movement ( left, right )
-					label={ sprintf( __( 'Move %s' ), getMovementDirection( 'down' ) ) }
-					aria-describedby={ `block-editor-block-mover__down-description-${ instanceId }` }
-					aria-disabled={ isLast }
-					onFocus={ this.onFocus }
-					onBlur={ this.onBlur }
-				/>
-				<span id={ `block-editor-block-mover__up-description-${ instanceId }` } className="block-editor-block-mover__description">
-					{
-						getBlockMoverDescription(
-							blocksCount,
-							blockType && blockType.title,
-							firstIndex,
-							isFirst,
-							isLast,
-							-1,
-							orientation,
-							isRTL,
-						)
-					}
-				</span>
-				<span id={ `block-editor-block-mover__down-description-${ instanceId }` } className="block-editor-block-mover__description">
-					{
-						getBlockMoverDescription(
-							blocksCount,
-							blockType && blockType.title,
-							firstIndex,
-							isFirst,
-							isLast,
-							1,
-							orientation,
-							isRTL,
-						)
-					}
-				</span>
-			</ToolbarGroup>
+							<Button
+								className="block-editor-block-mover__control"
+								onClick={ isLast ? null : onMoveDown }
+								icon={ getArrowIcon( 'down' ) }
+								// translators: %s: Horizontal direction of block movement ( left, right )
+								label={ sprintf( __( 'Move %s' ), getMovementDirection( 'down' ) ) }
+								aria-describedby={ `block-editor-block-mover__down-description-${ instanceId }` }
+								aria-disabled={ isLast }
+								onFocus={ this.onFocus }
+								onBlur={ this.onBlur }
+							/>
+							<span id={ `block-editor-block-mover__up-description-${ instanceId }` } className="block-editor-block-mover__description">
+								{
+									getBlockMoverDescription(
+										blocksCount,
+										blockType && blockType.title,
+										firstIndex,
+										isFirst,
+										isLast,
+										-1,
+										orientation,
+										isRTL,
+									)
+								}
+							</span>
+							<span id={ `block-editor-block-mover__down-description-${ instanceId }` } className="block-editor-block-mover__description">
+								{
+									getBlockMoverDescription(
+										blocksCount,
+										blockType && blockType.title,
+										firstIndex,
+										isFirst,
+										isLast,
+										1,
+										orientation,
+										isRTL,
+									)
+								}
+							</span>
+						</ToolbarGroup>
+					</div>
+				) }
+			</BlockDraggable>
 		);
 	}
 }
@@ -162,13 +158,12 @@ export class BlockMover extends Component {
 export default compose(
 	withSelect( ( select, { clientIds } ) => {
 		const { getBlock, getBlockIndex, getTemplateLock, getBlockRootClientId, getBlockOrder } = select( 'core/block-editor' );
-		const normalizedClientIds = castArray( clientIds );
-		const firstClientId = first( normalizedClientIds );
+		const firstClientId = first( clientIds );
 		const block = getBlock( firstClientId );
-		const rootClientId = getBlockRootClientId( first( normalizedClientIds ) );
+		const rootClientId = getBlockRootClientId( first( clientIds ) );
 		const blockOrder = getBlockOrder( rootClientId );
 		const firstIndex = getBlockIndex( firstClientId, rootClientId );
-		const lastIndex = getBlockIndex( last( normalizedClientIds ), rootClientId );
+		const lastIndex = getBlockIndex( last( clientIds ), rootClientId );
 		const { getSettings } = select( 'core/block-editor' );
 		const {
 			isRTL,
