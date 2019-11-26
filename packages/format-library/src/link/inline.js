@@ -14,8 +14,6 @@ import {
 	insert,
 	isCollapsed,
 	applyFormat,
-	getTextContent,
-	slice,
 } from '@wordpress/rich-text';
 import { URLPopover } from '@wordpress/block-editor';
 
@@ -119,12 +117,9 @@ class InlineLinkUI extends Component {
 
 		// Apply now if URL is not being edited.
 		if ( ! isShowingInput( this.props, this.state ) ) {
-			const selectedText = getTextContent( slice( value ) );
-
 			onChange( applyFormat( value, createLinkFormat( {
 				url,
 				opensInNewWindow,
-				text: selectedText,
 			} ) ) );
 		}
 	}
@@ -138,11 +133,9 @@ class InlineLinkUI extends Component {
 		const { isActive, value, onChange, speak } = this.props;
 		const { inputValue, opensInNewWindow } = this.state;
 		const url = prependHTTP( inputValue );
-		const selectedText = getTextContent( slice( value ) );
 		const format = createLinkFormat( {
 			url,
 			opensInNewWindow,
-			text: selectedText,
 		} );
 
 		event.preventDefault();
