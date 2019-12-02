@@ -29,6 +29,7 @@ import {
 	Spinner,
 	Toolbar,
 	ToolbarGroup,
+    SelectControl,
 } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 
@@ -45,11 +46,13 @@ import * as navIcons from './icons';
 function Navigation( {
 	attributes,
 	clientId,
+	pages,
+	menus,
 	fontSize,
 	hasExistingNavItems,
 	hasResolvedPages,
-	isRequestingPages,
-	pages,
+    isRequestingPages,
+	isRequestingMenus,
 	setAttributes,
 	setFontSize,
 	updateNavItemBlocks,
@@ -140,6 +143,23 @@ function Navigation( {
 							{ __( 'Create from all top-level pages' ) }
 						</Button>
 
+						{ menus && menus.length && (
+
+							<SelectControl
+								label="Create from existing Menu"
+								value={ null }
+								onChange={ ( ) => {
+
+								} }
+								options={ menus.map( ( menu ) => {
+									return {
+										label: menu.name,
+										value: menu.slug,
+									};
+								} ) }
+							/>
+						) }
+
 						<Button
 							isLink
 							className="wp-block-navigation-placeholder__button"
@@ -192,7 +212,7 @@ function Navigation( {
 			</InspectorControls>
 			<TextColor>
 				<div className={ blockClassNames } style={ blockInlineStyles }>
-					{ ! hasExistingNavItems && isRequestingPages && <><Spinner /> { __( 'Loading Navigation…' ) } </> }
+					{ ! hasExistingNavItems && (isRequestingPages || isRequestingMenus) && <><Spinner /> { __( 'Loading Navigation…' ) } </> }
 
 					<InnerBlocks
 						allowedBlocks={ [ 'core/navigation-link' ] }
@@ -218,11 +238,14 @@ export default compose( [
 		};
 
 		const pagesSelect = [ 'core', 'getEntityRecords', [ 'postType', 'page', filterDefaultPages ] ];
+		const menusSelect = [ 'core', 'getEntityRecords', [ 'root', 'menu' ] ];
 
 		return {
 			hasExistingNavItems: !! innerBlocks.length,
 			pages: select( 'core' ).getEntityRecords( 'postType', 'page', filterDefaultPages ),
+			menus: select( 'core' ).getEntityRecords( 'root', 'menu' ),
 			isRequestingPages: select( 'core/data' ).isResolving( ...pagesSelect ),
+			isRequestingMenus: select( 'core/data' ).isResolving( ...menusSelect ),
 			hasResolvedPages: select( 'core/data' ).hasFinishedResolution( ...pagesSelect ),
 		};
 	} ),
