@@ -17,6 +17,7 @@ export const defaultEntities = [
 	{ name: 'media', kind: 'root', baseURL: '/wp/v2/media', plural: 'mediaItems' },
 	{ name: 'taxonomy', kind: 'root', key: 'slug', baseURL: '/wp/v2/taxonomies', plural: 'taxonomies' },
 	{ name: 'menu', kind: 'root', baseURL: '/wp/v2/menus', plural: 'menus' },
+	{ name: 'menu-item', kind: 'root', baseURL: '/wp/v2/menu-items', plural: 'menu-items' },
 ];
 
 export const kinds = [
