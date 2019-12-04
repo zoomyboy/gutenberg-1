@@ -105,8 +105,6 @@ function Layout( { isMobileViewport } ) {
 							{ isRichEditingEnabled && mode === 'visual' && <VisualEditor /> }
 							<div className="edit-post-layout__metaboxes">
 								<MetaBoxes location="normal" />
-							</div>
-							<div className="edit-post-layout__metaboxes">
 								<MetaBoxes location="advanced" />
 							</div>
 							{ isMobileViewport && sidebarIsOpened && <ScrollLock /> }
@@ -129,7 +127,6 @@ function Layout( { isMobileViewport } ) {
 						<div className="edit-post-toggle-publish-panel">
 							<Button
 								isDefault
-								type="button"
 								className="edit-post-toggle-publish-panel__button"
 								onClick={ togglePublishSidebar }
 								aria-expanded={ false }
