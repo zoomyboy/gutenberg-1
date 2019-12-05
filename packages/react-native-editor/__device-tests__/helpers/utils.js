@@ -17,7 +17,6 @@ import path from 'path';
 import serverConfigs from './serverConfigs';
 import { ios12, android8 } from './caps';
 import AppiumLocal from './appium-local';
-import _ from 'underscore';
 
 // Platform setup
 const defaultPlatform = 'android';
@@ -73,7 +72,7 @@ const setupDriver = async () => {
 
 	let desiredCaps;
 	if ( isAndroid() ) {
-		desiredCaps = _.clone( android8 );
+		desiredCaps = { ...android8 };
 		if ( isLocalEnvironment() ) {
 			desiredCaps.app = path.resolve( localAndroidAppPath );
 			try {
@@ -92,7 +91,7 @@ const setupDriver = async () => {
 			desiredCaps.app = `sauce-storage:Gutenberg-${ safeBranchName }.apk`; // App should be preloaded to sauce storage, this can also be a URL
 		}
 	} else {
-		desiredCaps = _.clone( ios12 );
+		desiredCaps = { ...ios12 };
 		if ( isLocalEnvironment() ) {
 			desiredCaps.app = path.resolve( localIOSAppPath );
 		} else {
