@@ -13,6 +13,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* gutenbergTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* gutenbergTests.m */; };
+		69785B912391928000C360C3 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69785B652391919800C360C3 /* libRCTActionSheet.a */; };
 		69C9B323237F191C00180283 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C9B213237F144900180283 /* libRCTAnimation.a */; };
 		69C9B324237F191C00180283 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C9B252237F148500180283 /* libRCTBlob.a */; };
 		69C9B325237F191C00180283 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C9B25A237F149A00180283 /* libRCTImage.a */; };
@@ -60,6 +61,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "gutenberg-tvOS";
+		};
+		69785B642391919800C360C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 69785B602391919800C360C3 /* RCTActionSheet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTActionSheet;
 		};
 		69C9B1F4237F13B500180283 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -401,6 +409,7 @@
 		3ADEFEC092CF4D00BEF1019E /* libRNTAztecView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNTAztecView.a; sourceTree = "<group>"; };
 		3D53EF8FEF024C98A7AC9A56 /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../../../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		69785B602391919800C360C3 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../../../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		69F3DF692A7C4E5994CD3CBB /* libRNSafeArea.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSafeArea.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../../../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7E45CC55218B42C000C0B2AB /* RNReactNativeGutenbergBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReactNativeGutenbergBridge.xcodeproj; path = "../../react-native-bridge/ios/RNReactNativeGutenbergBridge.xcodeproj"; sourceTree = "<group>"; };
@@ -443,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69C9B32E237F191C00180283 /* libRNDarkMode.a in Frameworks */,
+				69785B912391928000C360C3 /* libRCTActionSheet.a in Frameworks */,
 				69C9B32D237F191C00180283 /* libReact.a in Frameworks */,
 				69C9B328237F191C00180283 /* libRCTSettings.a in Frameworks */,
 				FF37F903223819FA00AFA3DB /* JavaScriptCore.framework in Frameworks */,
@@ -529,6 +539,14 @@
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		69785B612391919800C360C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				69785B652391919800C360C3 /* libRCTActionSheet.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		69C9B1F1237F13B500180283 /* Products */ = {
@@ -703,6 +721,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				69785B602391919800C360C3 /* RCTActionSheet.xcodeproj */,
 				7E8FA9292301CA9E00D007F0 /* RNDarkMode.xcodeproj */,
 				91C2E1AE22422C9F00D5E1F5 /* RNTKeyboardAwareScrollView.xcodeproj */,
 				7E45CC55218B42C000C0B2AB /* RNReactNativeGutenbergBridge.xcodeproj */,
@@ -902,6 +921,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 69785B612391919800C360C3 /* Products */;
+					ProjectRef = 69785B602391919800C360C3 /* RCTActionSheet.xcodeproj */;
+				},
+				{
 					ProductGroup = 69C9B248237F147600180283 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -985,6 +1008,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		69785B652391919800C360C3 /* libRCTActionSheet.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTActionSheet.a;
+			remoteRef = 69785B642391919800C360C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		69C9B1F5237F13B500180283 /* libRNDarkMode.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
