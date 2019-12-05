@@ -59,7 +59,7 @@
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.16",
     "node-libs-react-native": "^1.0.2",
-    "react": "16.8.6",
+    "react": "16.9.0",
     "react-native": "jtreanor/react-native#v0.60.0-patched",
     "react-native-dark-mode": "git+https://github.com/wordpress-mobile/react-native-dark-mode.git#f09bf1480e7b34536413ab3300f29e4375edb2c6",
     "react-native-hr": "git+https://github.com/Riglerr/react-native-hr.git#2d01a5cf77212d100e8b99e0310cce5234f977b3",
