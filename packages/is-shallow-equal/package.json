@@ -22,7 +22,8 @@
 	"files": [
 		"arrays.js",
 		"index.js",
-		"objects.js"
+		"objects.js",
+		"build-types"
 	],
 	"main": "index.js",
 	"sideEffects": false,
@@ -31,5 +32,6 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"types": "build-types"
 }

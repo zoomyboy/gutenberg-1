@@ -60,5 +60,6 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"types": "build-types"
 }

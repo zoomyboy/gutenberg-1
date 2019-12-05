@@ -1,14 +1,16 @@
 {
 	"compilerOptions": {
+		"moduleResolution": "node",
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"checkJs": true,
 		"jsx": "preserve",
-		"lib": ["dom", "esnext"],
-		"module": "commonjs",
-		"noEmit": true,
+		"lib": [ "dom", "esnext" ],
+		"module": "esnext",
+		"emitDeclarationOnly": true,
 		"resolveJsonModule": true,
 		"target": "esnext",
+		"esModuleInterop": true,
 
 		/* Project Imports */
 		"baseUrl": ".",
@@ -25,10 +27,10 @@
 		"noImplicitAny": false,                /* Raise error on expressions and declarations with an implied 'any' type. */
 
 		/* Additional Checks */
+		"noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
+		"noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
 		"noUnusedLocals": true,                /* Report errors on unused locals. */
 		"noUnusedParameters": true,            /* Report errors on unused parameters. */
-		"noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
-		"noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
 	},
 	"include": [
 		"./packages/a11y/**/*.js",
@@ -41,9 +43,17 @@
 		"./packages/url/**/*.js"
 	],
 	"exclude": [
-		"./packages/*/benchmark",
-		"./packages/**/test/**",
+		"**/node_modules",
+		"./bin",
+		"./docs",
+		"./lib",
+		"./packages/**/build-module/**",
 		"./packages/**/build/**",
-		"./packages/**/build-module/**"
+		"./packages/**/test/**",
+		"./packages/*/benchmark",
+		"./phpunit",
+		"./test",
+		"./vendor",
+		"./wordpress"
 	]
 }
