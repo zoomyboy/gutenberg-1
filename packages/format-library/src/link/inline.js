@@ -76,6 +76,7 @@ class InlineLinkUI extends Component {
 
 		this.state = {
 			opensInNewWindow: false,
+			shouldAppendText: true,
 			inputValue: '',
 		};
 	}
@@ -131,7 +132,7 @@ class InlineLinkUI extends Component {
 
 	submitLink( event ) {
 		const { isActive, value, onChange, speak } = this.props;
-		const { inputValue, opensInNewWindow } = this.state;
+		const { inputValue, opensInNewWindow, shouldAppendText } = this.state;
 		const url = prependHTTP( inputValue );
 		const format = createLinkFormat( {
 			url,
@@ -140,12 +141,22 @@ class InlineLinkUI extends Component {
 
 		event.preventDefault();
 
+		let newValue;
+
 		if ( isCollapsed( value ) && ! isActive ) {
 			const toInsert = applyFormat( create( { text: url } ), format, 0, url.length );
-			onChange( insert( value, toInsert ) );
+			newValue = insert( value, toInsert );
 		} else {
-			onChange( applyFormat( value, format ) );
+			newValue = applyFormat( value, format );
 		}
+
+		if ( opensInNewWindow && shouldAppendText ) {
+			const text = __( ' (opens in new tab)' );
+			const toInsert = applyFormat( create( { text } ), format, 0, text.length );
+			newValue = insert( newValue, toInsert, value.end );
+		}
+
+		onChange( newValue );
 
 		this.resetState();
 
@@ -194,13 +205,19 @@ class InlineLinkUI extends Component {
 				onFocusOutside={ this.onFocusOutside }
 				onClose={ this.resetState }
 				focusOnMount={ showInput ? 'firstElement' : false }
-				renderSettings={ () => (
+				renderSettings={ () => <>
 					<ToggleControl
 						label={ __( 'Open in New Tab' ) }
 						checked={ opensInNewWindow }
 						onChange={ this.setLinkTarget }
 					/>
-				) }
+					{ showInput && opensInNewWindow && <ToggleControl
+						label={ __( 'Append “(opens in a new tab)” to link' ) }
+						help={ __( 'Leave this setting on to help avoid confusing users who do not easily perceive a change in context.' ) }
+						checked={ this.state.shouldAppendText }
+						onChange={ ( shouldAppendText ) => this.setState( { shouldAppendText } ) }
+					/> }
+				</> }
 			>
 				{ showInput ? (
 					<URLPopover.LinkEditor
