@@ -419,6 +419,7 @@ describe( 'Links', () => {
 		await page.keyboard.press( 'Space' );
 		// Navigate back to the input field.
 		await page.keyboard.press( 'Tab' );
+		await page.keyboard.press( 'Tab' );
 		// Submit the form.
 		await page.keyboard.press( 'Enter' );
 
@@ -449,6 +450,7 @@ describe( 'Links', () => {
 		// Uncheck the checkbox.
 		await page.keyboard.press( 'Space' );
 		// Navigate back to the input field.
+		await page.keyboard.press( 'Tab' );
 		await page.keyboard.press( 'Tab' );
 		// Submit the form.
 		await page.keyboard.press( 'Enter' );

@@ -154,6 +154,8 @@ class InlineLinkUI extends Component {
 			const text = __( ' (opens in new tab)' );
 			const toInsert = applyFormat( create( { text } ), format, 0, text.length );
 			newValue = insert( newValue, toInsert, value.end );
+			newValue.start = value.start;
+			newValue.end = value.end + text.length;
 		}
 
 		onChange( newValue );
