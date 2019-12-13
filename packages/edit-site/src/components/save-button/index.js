@@ -10,8 +10,13 @@ import { EntitiesSavedStates } from '@wordpress/editor';
 
 export default function SaveButton() {
 	const [ , setStatus ] = useEntityProp( 'postType', 'wp_template', 'status' );
+	const [ , setTitle ] = useEntityProp( 'postType', 'wp_template', 'title' );
+	const [ slug ] = useEntityProp( 'postType', 'wp_template', 'slug' );
 	// Publish template if not done yet.
-	useEffect( () => setStatus( 'publish' ), [] );
+	useEffect( () => {
+		setStatus( 'publish' );
+		setTitle( slug );
+	}, [ slug ] );
 
 	const { isDirty, isSaving } = useSelect( ( select ) => {
 		const { getEntityRecordChangesByRecord, isSavingEntityRecord } = select(
@@ -48,7 +53,7 @@ export default function SaveButton() {
 				isBusy={ isSaving }
 				onClick={ disabled ? undefined : open }
 			>
-				{ __( 'Update' ) }
+				{ __( 'Customize' ) }
 			</Button>
 			<EntitiesSavedStates isOpen={ isOpen } onRequestClose={ close } />
 		</>
