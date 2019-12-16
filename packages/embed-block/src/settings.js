@@ -37,6 +37,13 @@ const embedAttributes = {
 	},
 };
 
+/**
+ * Generate the settings object for an embed block to register with.
+ *
+ * @param {Object} settings The settings object to pass to `registerBlockType())`. The `save` and `edit`
+ *                          attributes will be overriden, if passed.
+ * @return {Object} The settings object configured as an embed block.
+ */
 export function getEmbedBlockSettings( { title, description, icon, category = 'embed', transforms, keywords = [], supports = {}, responsive = true } ) {
 	const blockDescription = description || __( 'Add a block that displays content pulled from other sites, like Twitter, Instagram or YouTube.' );
 	const edit = getEmbedEditComponent( title, icon, responsive );
