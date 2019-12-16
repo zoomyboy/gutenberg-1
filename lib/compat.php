@@ -83,11 +83,15 @@ add_filter( 'pre_render_block', 'gutenberg_provide_render_callback_with_block_ob
  * it is made accessible for read and write via the REST API.
  */
 function gutenberg_register_data_persistence_user_meta() {
-	register_meta( 'user', 'wp_data_persistence', array(
-		'type'         => 'string',
-		'single'       => true,
-		'show_in_rest' => true,
-	) );
+	register_meta(
+		'user',
+		'wp_data_persistence',
+		array(
+			'type'         => 'string',
+			'single'       => true,
+			'show_in_rest' => true,
+		)
+	);
 }
 add_action( 'init', 'gutenberg_register_data_persistence_user_meta' );
 
