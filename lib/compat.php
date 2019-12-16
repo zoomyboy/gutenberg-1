@@ -31,6 +31,33 @@ function gutenberg_safe_style_css_column_flex_basis( $attr ) {
 add_filter( 'safe_style_css', 'gutenberg_safe_style_css_column_flex_basis' );
 
 /**
+ * Adds support for the nonce middleware endpoint and media upload middlewares
+ * which were added as part of WordPress 5.3.0.
+ *
+ * This can be removed when plugin support requires WordPress 5.3.0+.
+ *
+ * @see https://core.trac.wordpress.org/ticket/48310
+ * @see https://core.trac.wordpress.org/changeset/46546
+ * @see https://core.trac.wordpress.org/ticket/48076
+ * @see https://core.trac.wordpress.org/changeset/46253
+ */
+function gutenberg_use_api_fetch_middlewares() {
+	wp_add_inline_script(
+		'wp-api-fetch',
+		sprintf(
+			'wp.apiFetch.nonceMiddleware = wp.apiFetch.createNonceMiddleware( "%s" );' .
+			'wp.apiFetch.use( wp.apiFetch.nonceMiddleware );' .
+			'wp.apiFetch.nonceEndpoint = "%s";' .
+			'wp.apiFetch.use( wp.apiFetch.mediaUploadMiddleware );',
+			( wp_installing() && ! is_multisite() ) ? '' : wp_create_nonce( 'wp_rest' ),
+			admin_url( 'admin-ajax.php?action=gutenberg_rest_nonce' )
+		),
+		'after'
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'gutenberg_enqueue_block_editor_assets' );
+
+/**
  * Shim that hooks into `pre_render_block` so as to override `render_block`
  * with a function that passes `render_callback` the block object as the
  * argument.
