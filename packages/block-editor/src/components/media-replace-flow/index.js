@@ -38,8 +38,9 @@ const MediaReplaceFlow = (
 		allowedTypes,
 		accept,
 		onSelect,
+		noticeOperations,
+		noticeUI,
 		onSelectURL,
-		onError,
 		name = __( 'Replace' ),
 	}
 ) => {
@@ -60,6 +61,11 @@ const MediaReplaceFlow = (
 			// Stop the key event from propagating up to ObserveTyping.startTypingInTextField.
 			event.stopPropagation();
 		}
+	};
+
+	const onError = ( message ) => {
+		noticeOperations.removeAllNotices();
+		noticeOperations.createErrorNotice( message );
 	};
 
 	const selectMedia = ( media ) => {
@@ -184,6 +190,9 @@ const MediaReplaceFlow = (
 					</NavigableMenu>
 					{ showURLInput && <div className="block-editor-media-flow__url-input">
 						{ urlInputUIContent }
+					</div> }
+					{ noticeUI && <div className="block-editor-media-flow__error">
+						{ noticeUI }
 					</div> }
 				</>
 			) }
