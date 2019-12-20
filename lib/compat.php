@@ -48,22 +48,22 @@ function gutenberg_replace_default_block_categories( $default_categories ) {
 	$substitution = array(
 		'common'     => array(
 			'slug'  => 'text',
-			'title' => __( 'Text' ),
+			'title' => __( 'Text', 'gutenberg' ),
 			'icon'  => null,
 		),
 		'formatting' => array(
 			'slug'  => 'media',
-			'title' => __( 'Media' ),
+			'title' => __( 'Media', 'gutenberg' ),
 			'icon'  => null,
 		),
 		'layout'     => array(
 			'slug'  => 'design',
-			'title' => __( 'Design' ),
+			'title' => __( 'Design', 'gutenberg' ),
 			'icon'  => null,
 		),
 		'widgets'    => array(
 			'slug'  => 'tools',
-			'title' => __( 'Tools' ),
+			'title' => __( 'Tools', 'gutenberg' ),
 			'icon'  => null,
 		),
 	);
