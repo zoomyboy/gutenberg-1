@@ -3,11 +3,11 @@
  */
 import items, {
 	categories,
-	textItem,
-	advancedTextItem,
+	paragraphItem,
+	advancedParagraphItem,
 	moreItem,
 	youtubeItem,
-	textEmbedItem,
+	paragraphEmbedItem,
 } from './fixtures';
 import {
 	normalizeSearchTerm,
@@ -54,8 +54,8 @@ describe( 'searchItems', () => {
 	} );
 
 	it( 'should search items using the title ignoring case', () => {
-		expect( searchItems( items, categories, 'TEXT' ) ).toEqual(
-			[ textItem, advancedTextItem, textEmbedItem ]
+		expect( searchItems( items, categories, 'paragraph' ) ).toEqual(
+			[ paragraphItem, advancedParagraphItem, paragraphEmbedItem ]
 		);
 	} );
 
@@ -66,7 +66,7 @@ describe( 'searchItems', () => {
 	} );
 
 	it( 'should search items using the categories', () => {
-		expect( searchItems( items, categories, 'LAYOUT' ) ).toEqual(
+		expect( searchItems( items, categories, 'DESIGN' ) ).toEqual(
 			[ moreItem ]
 		);
 	} );

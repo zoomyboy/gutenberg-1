@@ -39,12 +39,12 @@ describe( 'block parser', () => {
 			},
 		},
 		save: ( { attributes } ) => attributes.fruit || null,
-		category: 'common',
+		category: 'text',
 		title: 'block title',
 	};
 
 	const unknownBlockSettings = {
-		category: 'common',
+		category: 'text',
 		title: 'unknown block',
 		attributes: {
 			content: {
@@ -879,7 +879,7 @@ describe( 'block parser', () => {
 					chicken: { type: 'string' },
 				},
 				save: ( { attributes } ) => attributes.content,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 
@@ -915,7 +915,7 @@ describe( 'block parser', () => {
 					},
 				},
 				save: ( { attributes } ) => attributes.content,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 
@@ -1034,7 +1034,7 @@ describe( 'block parser', () => {
 
 		it( 'should parse with unicode escaped returned to original representation', () => {
 			registerBlockType( 'core/code', {
-				category: 'common',
+				category: 'text',
 				title: 'Code Block',
 				attributes: {
 					content: {

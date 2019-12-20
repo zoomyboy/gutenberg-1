@@ -157,7 +157,7 @@ describe( 'state', () => {
 			registerBlockType( 'core/test-block', {
 				save: noop,
 				edit: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 		} );
@@ -171,13 +171,13 @@ describe( 'state', () => {
 				registerBlockType( 'core/test-parent-block', {
 					save: noop,
 					edit: noop,
-					category: 'common',
+					category: 'text',
 					title: 'test parent block',
 				} );
 				registerBlockType( 'core/test-child-block', {
 					save: noop,
 					edit: noop,
-					category: 'common',
+					category: 'text',
 					title: 'test child block 1',
 					attributes: {
 						attr: {

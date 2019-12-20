@@ -227,7 +227,7 @@ describe( 'block serializer', () => {
 	describe( 'serializeBlock()', () => {
 		it( 'serializes the freeform content fallback block without comment delimiters', () => {
 			registerBlockType( 'core/freeform-block', {
-				category: 'common',
+				category: 'text',
 				title: 'freeform block',
 				attributes: {
 					fruit: {
@@ -245,7 +245,7 @@ describe( 'block serializer', () => {
 		} );
 		it( 'serializes the freeform content fallback block with comment delimiters in nested context', () => {
 			registerBlockType( 'core/freeform-block', {
-				category: 'common',
+				category: 'text',
 				title: 'freeform block',
 				attributes: {
 					fruit: {
@@ -267,7 +267,7 @@ describe( 'block serializer', () => {
 		} );
 		it( 'serializes the unregistered fallback block without comment delimiters', () => {
 			registerBlockType( 'core/unregistered-block', {
-				category: 'common',
+				category: 'text',
 				title: 'unregistered block',
 				attributes: {
 					fruit: {
@@ -315,7 +315,7 @@ describe( 'block serializer', () => {
 						</p>
 					);
 				},
-				category: 'common',
+				category: 'text',
 				title: 'block title',
 			};
 			registerBlockType( 'core/test-block', blockType );
@@ -371,7 +371,7 @@ describe( 'block serializer', () => {
 				save( { attributes } ) {
 					return attributes.content;
 				},
-				category: 'common',
+				category: 'text',
 				title: 'block title',
 			};
 			registerBlockType( 'core/chicken', blockType );

@@ -252,8 +252,8 @@ describe( 'selectors', () => {
 		const name = 'core/paragraph';
 		const blockType = {
 			title: 'Paragraph',
-			category: 'common',
-			keywords: [ 'text' ],
+			category: 'text',
+			keywords: [ 'body' ],
 		};
 
 		const state = {
@@ -297,13 +297,13 @@ describe( 'selectors', () => {
 			} );
 
 			it( 'should return true if match using the keywords', () => {
-				const result = isMatchingSearchTerm( state, nameOrType, 'TEXT' );
+				const result = isMatchingSearchTerm( state, nameOrType, 'BODY' );
 
 				expect( result ).toBe( true );
 			} );
 
 			it( 'should return true if match using the categories', () => {
-				const result = isMatchingSearchTerm( state, nameOrType, 'COMMON' );
+				const result = isMatchingSearchTerm( state, nameOrType, 'TEXT' );
 
 				expect( result ).toBe( true );
 			} );

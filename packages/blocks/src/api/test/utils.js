@@ -36,7 +36,7 @@ describe( 'block helpers', () => {
 					},
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			setDefaultBlockName( 'core/test-block' );
@@ -56,7 +56,7 @@ describe( 'block helpers', () => {
 					},
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			setDefaultBlockName( 'core/test-block' );
@@ -75,7 +75,7 @@ describe( 'block helpers', () => {
 					},
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			registerBlockType( 'core/test-block2', {
@@ -86,7 +86,7 @@ describe( 'block helpers', () => {
 					},
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			setDefaultBlockName( 'core/test-block1' );

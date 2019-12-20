@@ -41,7 +41,7 @@ describe( 'reusable blocks effects', () => {
 	beforeAll( () => {
 		registerBlockType( 'core/test-block', {
 			title: 'Test block',
-			category: 'common',
+			category: 'text',
 			save: () => null,
 			attributes: {
 				name: { type: 'string' },
@@ -50,7 +50,7 @@ describe( 'reusable blocks effects', () => {
 
 		registerBlockType( 'core/block', {
 			title: 'Reusable Block',
-			category: 'common',
+			category: 'text',
 			save: () => null,
 			attributes: {
 				ref: { type: 'string' },

@@ -106,8 +106,8 @@ describe( 'InserterMenu', () => {
 			'.block-editor-block-types-list__item-title'
 		);
 		expect( visibleBlocks ).toHaveLength( 3 );
-		expect( visibleBlocks[ 0 ].textContent ).toEqual( 'Text' );
-		expect( visibleBlocks[ 1 ].textContent ).toEqual( 'Advanced Text' );
+		expect( visibleBlocks[ 0 ].textContent ).toEqual( 'Paragraph' );
+		expect( visibleBlocks[ 1 ].textContent ).toEqual( 'Advanced Paragraph' );
 		expect( visibleBlocks[ 2 ].textContent ).toEqual( 'Some Other Block' );
 	} );
 
@@ -135,7 +135,7 @@ describe( 'InserterMenu', () => {
 
 		expect( visibleBlocks ).toHaveLength( 2 );
 		expect( visibleBlocks[ 0 ].textContent ).toBe( 'YouTube' );
-		expect( visibleBlocks[ 1 ].textContent ).toBe( 'A Text Embed' );
+		expect( visibleBlocks[ 1 ].textContent ).toBe( 'A Paragraph Embed' );
 
 		assertNoResultsMessageNotToBePresent( element );
 	} );
@@ -158,11 +158,11 @@ describe( 'InserterMenu', () => {
 		assertNoResultsMessageNotToBePresent( element );
 	} );
 
-	it( 'should show the common category blocks', () => {
+	it( 'should show the text category blocks', () => {
 		const element = initializeAllClosedMenuStateAndReturnElement();
-		const commonBlocksTab = getTabButtonWithContent( element, 'Common blocks' );
+		const textBlocksTab = getTabButtonWithContent( element, 'Text' );
 
-		TestUtils.Simulate.click( commonBlocksTab );
+		TestUtils.Simulate.click( textBlocksTab );
 
 		assertOpenedPanels( element, 1 );
 
@@ -171,8 +171,8 @@ describe( 'InserterMenu', () => {
 		);
 
 		expect( visibleBlocks ).toHaveLength( 3 );
-		expect( visibleBlocks[ 0 ].textContent ).toBe( 'Text' );
-		expect( visibleBlocks[ 1 ].textContent ).toBe( 'Advanced Text' );
+		expect( visibleBlocks[ 0 ].textContent ).toBe( 'Paragraph' );
+		expect( visibleBlocks[ 1 ].textContent ).toBe( 'Advanced Paragraph' );
 		expect( visibleBlocks[ 2 ].textContent ).toBe( 'Some Other Block' );
 
 		assertNoResultsMessageNotToBePresent( element );
@@ -180,9 +180,9 @@ describe( 'InserterMenu', () => {
 
 	it( 'should disable items with `isDisabled`', () => {
 		const element = initializeMenuDefaultStateAndReturnElement();
-		const layoutTab = getTabButtonWithContent( element, 'Layout elements' );
+		const designTab = getTabButtonWithContent( element, 'Design' );
 
-		TestUtils.Simulate.click( layoutTab );
+		TestUtils.Simulate.click( designTab );
 
 		const disabledBlocks = element.querySelectorAll(
 			'.block-editor-block-types-list__item[disabled]'
@@ -194,7 +194,7 @@ describe( 'InserterMenu', () => {
 
 	it( 'should allow searching for items', () => {
 		const element = initializeMenuDefaultStateAndReturnElement();
-		performSearchWithText( element, 'text' );
+		performSearchWithText( element, 'paragraph' );
 
 		assertOpenedPanels( element, 2 );
 
@@ -203,7 +203,7 @@ describe( 'InserterMenu', () => {
 		);
 
 		expect( matchingCategories ).toHaveLength( 2 );
-		expect( matchingCategories[ 0 ].textContent ).toBe( 'Common blocks' );
+		expect( matchingCategories[ 0 ].textContent ).toBe( 'Text' );
 		expect( matchingCategories[ 1 ].textContent ).toBe( 'Embeds' );
 
 		const visibleBlocks = element.querySelectorAll(
@@ -211,16 +211,16 @@ describe( 'InserterMenu', () => {
 		);
 
 		expect( visibleBlocks ).toHaveLength( 3 );
-		expect( visibleBlocks[ 0 ].textContent ).toBe( 'Text' );
-		expect( visibleBlocks[ 1 ].textContent ).toBe( 'Advanced Text' );
-		expect( visibleBlocks[ 2 ].textContent ).toBe( 'A Text Embed' );
+		expect( visibleBlocks[ 0 ].textContent ).toBe( 'Paragraph' );
+		expect( visibleBlocks[ 1 ].textContent ).toBe( 'Advanced Paragraph' );
+		expect( visibleBlocks[ 2 ].textContent ).toBe( 'A Paragraph Embed' );
 
 		assertNoResultsMessageNotToBePresent( element );
 	} );
 
 	it( 'should trim whitespace of search terms', () => {
 		const element = initializeMenuDefaultStateAndReturnElement();
-		performSearchWithText( element, ' text' );
+		performSearchWithText( element, ' paragraph' );
 
 		assertOpenedPanels( element, 2 );
 
@@ -229,7 +229,7 @@ describe( 'InserterMenu', () => {
 		);
 
 		expect( matchingCategories ).toHaveLength( 2 );
-		expect( matchingCategories[ 0 ].textContent ).toBe( 'Common blocks' );
+		expect( matchingCategories[ 0 ].textContent ).toBe( 'Text' );
 		expect( matchingCategories[ 1 ].textContent ).toBe( 'Embeds' );
 
 		const visibleBlocks = element.querySelectorAll(
@@ -237,9 +237,9 @@ describe( 'InserterMenu', () => {
 		);
 
 		expect( visibleBlocks ).toHaveLength( 3 );
-		expect( visibleBlocks[ 0 ].textContent ).toBe( 'Text' );
-		expect( visibleBlocks[ 1 ].textContent ).toBe( 'Advanced Text' );
-		expect( visibleBlocks[ 2 ].textContent ).toBe( 'A Text Embed' );
+		expect( visibleBlocks[ 0 ].textContent ).toBe( 'Paragraph' );
+		expect( visibleBlocks[ 1 ].textContent ).toBe( 'Advanced Paragraph' );
+		expect( visibleBlocks[ 2 ].textContent ).toBe( 'A Paragraph Embed' );
 
 		assertNoResultsMessageNotToBePresent( element );
 	} );

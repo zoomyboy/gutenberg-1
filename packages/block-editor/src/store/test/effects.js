@@ -39,7 +39,7 @@ describe( 'effects', () => {
 			content: {},
 		},
 		save: () => 'Saved',
-		category: 'common',
+		category: 'text',
 		title: 'block title',
 	};
 
@@ -87,7 +87,7 @@ describe( 'effects', () => {
 					};
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			const blockA = deepFreeze( {
@@ -148,7 +148,7 @@ describe( 'effects', () => {
 					};
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			registerBlockType( 'core/test-block-2', defaultBlockSettings );
@@ -193,7 +193,7 @@ describe( 'effects', () => {
 					};
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block',
 			} );
 			registerBlockType( 'core/test-block-2', {
@@ -214,7 +214,7 @@ describe( 'effects', () => {
 					} ],
 				},
 				save: noop,
-				category: 'common',
+				category: 'text',
 				title: 'test block 2',
 			} );
 			const blockA = deepFreeze( {
