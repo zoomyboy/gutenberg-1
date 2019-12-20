@@ -88,11 +88,16 @@ function gutenberg_register_data_persistence_user_meta() {
 		'user',
 		$wpdb->prefix . 'data_persistence',
 		array(
-			'type'         => 'string',
+			'type'         => 'object',
 			'single'       => true,
 			'show_in_rest' => array(
-				'name' => 'data_persistence',
-				'type' => 'string',
+				'name'   => 'data_persistence',
+				'type'   => 'object',
+				'schema' => array(
+					'type'                 => 'object',
+					'properties'           => array(),
+					'additionalProperties' => true,
+				),
 			),
 		)
 	);
@@ -116,8 +121,10 @@ function gutenberg_user_settings_data_persistence_inline_script() {
 		$persisted_value = sprintf( 'localStorage.getItem( "WP_DATA_USER_%s" );', $user_id );
 	} else {
 		// Otherwise, encode the string value for interpolation in the storage
-		// implementation script.
-		$persisted_value = json_encode( $persisted_value );
+		// implementation script. The first `json_encode` will is responsible
+		// for producing a JSON encoding of the persisted meta object, and the
+		// second will apply quoting to that string result.
+		$persisted_value = json_encode( json_encode( $persisted_value ) );
 	}
 
 	$persistence_script = <<<JS
@@ -133,7 +140,7 @@ function gutenberg_user_settings_data_persistence_inline_script() {
 					method: 'POST',
 					data: {
 						meta: {
-							data_persistence: value,
+							data_persistence: JSON.parse( value ),
 						}
 					}
 				} );
