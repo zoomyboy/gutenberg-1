@@ -34,21 +34,15 @@ function GroupEdit( props ) {
 		backgroundColor: backgroundColor.color,
 	};
 
-	const hasPadding = ( device = '' ) => !! attributes[ `paddingSize${ device }` ];
-	const hasMargin = ( device = '' ) => !! attributes[ `marginSize${ device }` ];
+	const hasPadding = !! attributes.paddingSize;
+	const hasMargin = !! attributes.marginSize;
 
 	const classes = classnames( className, backgroundColor.class, {
 		'has-background': !! backgroundColor.color,
-		'has-padding': hasPadding(),
-		'has-margin': hasMargin(),
-		'has-responsive-padding': attributes.responsivePadding,
-		'has-responsive-margin': attributes.responsiveMargin,
-		[ `padding-${ attributes.paddingSize }` ]: hasPadding(),
-		[ `padding-tablet-${ attributes.paddingSizeTablet }` ]: attributes.responsivePadding && hasPadding( 'Tablet' ),
-		[ `padding-mobile-${ attributes.paddingSizeMobile }` ]: attributes.responsivePadding && hasPadding( 'Mobile' ),
-		[ `margin-${ attributes.marginSize }` ]: hasMargin(),
-		[ `margin-tablet-${ attributes.marginSizeTablet }` ]: hasMargin( 'Tablet' ),
-		[ `margin-mobile-${ attributes.marginSizeMobile }` ]: hasMargin( 'Mobile' ),
+		'has-padding': hasPadding,
+		'has-margin': hasMargin,
+		[ `padding-${ attributes.paddingSize }` ]: hasPadding,
+		[ `margin-${ attributes.marginSize }` ]: hasMargin,
 	} );
 
 	return (
