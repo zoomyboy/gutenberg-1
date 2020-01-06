@@ -81,6 +81,7 @@ exports[`DimensionControl rendering renders with icon and custom icon label 1`] 
   label={
     <React.Fragment>
       <Icon
+        className="block-editor-dimension-control__icon"
         icon="tablet"
       />
       Margin
@@ -125,6 +126,7 @@ exports[`DimensionControl rendering renders with icon and default icon label 1`]
   label={
     <React.Fragment>
       <Icon
+        className="block-editor-dimension-control__icon"
         icon="tablet"
       />
       Margin
