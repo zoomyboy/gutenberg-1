@@ -21,7 +21,7 @@ import { getBlockPreviewContainerDOMNode } from '../../utils/dom';
 const getInlineStyles = ( scale, x, y, isReady, width ) => ( {
 	transform: `scale(${ scale })`,
 	visibility: isReady ? 'visible' : 'hidden',
-	left: -x,
+	left: x,
 	top: y,
 	width,
 } );
@@ -42,8 +42,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, scal
 				return;
 			}
 
-			// Auxiliary vars used for onReady() callback.
-			let scale, _x = 0, _y = 0;
+			let scale, offsetX = 0, offsetY = 0;
 
 			// If we're previewing a single block, scale the preview to fit it.
 			if ( blocks.length === 1 ) {
@@ -63,16 +62,12 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, scal
 				const scaledElementRect = previewElement.getBoundingClientRect();
 
 				scale = containerElementRect.width / scaledElementRect.width || 1;
-				const offsetX = ( -( scaledElementRect.left - containerElementRect.left ) * scale ) + padding;
-				const offsetY = ( containerElementRect.height > scaledElementRect.height * scale ) ?
+				offsetX = ( -( scaledElementRect.left - containerElementRect.left ) * scale ) + padding;
+				offsetY = ( containerElementRect.height > scaledElementRect.height * scale ) ?
 					( ( containerElementRect.height - ( scaledElementRect.height * scale ) ) / 2 ) + padding : 0;
-				const position = { x: offsetX * scale, y: offsetY };
-
-				_x = offsetX * scale;
-				_y = offsetY;
 
 				setPreviewScale( scale );
-				setPosition( { x: _x, y: _y } );
+				setPosition( { x: offsetX, y: offsetY } );
 
 				// Hack: we need  to reset the scaled elements margins
 				previewElement.style.marginTop = '0';
@@ -85,9 +80,9 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, scal
 			setIsReady( true );
 			onReady( {
 				scale,
-				position: { x: _x, y: _y },
+				position: { x: offsetX, y: offsetY },
 				previewContainerRef: previewRef,
-				inlineStyles: getInlineStyles( scale, _x, _y, true, viewportWidth ),
+				inlineStyles: getInlineStyles( scale, offsetX, offsetY, true, viewportWidth ),
 			} );
 		}, scalingDelay );
 
@@ -120,7 +115,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, scal
 	);
 }
 
-export function BlockPreview( { blocks, viewportWidth = 700, settings, padding, __experimentalOnReady = noop, __experimentalScalingDelay = 100 } ) {
+export function BlockPreview( { blocks, viewportWidth = 700, padding, settings, __experimentalOnReady = noop, __experimentalScalingDelay = 100 } ) {
 	const renderedBlocks = useMemo( () => castArray( blocks ), [ blocks ] );
 	const [ recompute, triggerRecompute ] = useReducer( ( state ) => state + 1, 0 );
 	useLayoutEffect( triggerRecompute, [ blocks ] );
