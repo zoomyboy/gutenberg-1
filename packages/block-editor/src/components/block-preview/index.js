@@ -26,7 +26,6 @@ const getInlineStyles = ( scale, x, y, isReady, width ) => ( {
 	width,
 } );
 
-
 function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, scalingDelay } ) {
 	const previewRef = useRef( null );
 
