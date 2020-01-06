@@ -67,7 +67,7 @@ function ScaledBlockPreview( { blocks, viewportWidth, padding = 0, onReady, scal
 				const offsetX = ( -( scaledElementRect.left - containerElementRect.left ) * scale ) + padding;
 				const offsetY = ( containerElementRect.height > scaledElementRect.height * scale ) ?
 					( ( containerElementRect.height - ( scaledElementRect.height * scale ) ) / 2 ) + padding : 0;
-				position = { x: offsetX * scale, y: offsetY };
+				const position = { x: offsetX * scale, y: offsetY };
 
 				_x = offsetX * scale;
 				_y = offsetY;
