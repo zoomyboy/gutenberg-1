@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useState, createRef } from '@wordpress/element';
+import { useState, createRef, renderToString } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { speak } from '@wordpress/a11y';
 import {
@@ -11,7 +11,6 @@ import {
 	ToolbarGroup,
 	Button,
 	Dropdown,
-	withNotices,
 } from '@wordpress/components';
 import {
 	LEFT,
@@ -21,7 +20,7 @@ import {
 	BACKSPACE,
 	ENTER,
 } from '@wordpress/keycodes';
-import { useSelect } from '@wordpress/data';
+import { withDispatch, useSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 
 /**
@@ -38,10 +37,9 @@ const MediaReplaceFlow = (
 		allowedTypes,
 		accept,
 		onSelect,
-		noticeOperations,
-		noticeUI,
 		onSelectURL,
 		name = __( 'Replace' ),
+		createNotice,
 	}
 ) => {
 	const [ showURLInput, setShowURLInput ] = useState( false );
@@ -64,8 +62,11 @@ const MediaReplaceFlow = (
 	};
 
 	const onError = ( message ) => {
-		noticeOperations.removeAllNotices();
-		noticeOperations.createErrorNotice( message );
+		createNotice( 'error', renderToString( message ), {
+			speak: true,
+			isDismissible: true,
+			__unstableHTML: true,
+		} );
 	};
 
 	const selectMedia = ( media ) => {
@@ -191,15 +192,17 @@ const MediaReplaceFlow = (
 					{ showURLInput && <div className="block-editor-media-flow__url-input">
 						{ urlInputUIContent }
 					</div> }
-					{ noticeUI && <div className="block-editor-media-flow__error">
-						{ noticeUI }
-					</div> }
 				</>
 			) }
 		/>
 	);
 };
 
-export default compose(
-	withNotices,
-)( MediaReplaceFlow );
+export default compose( [
+	withDispatch( ( dispatch ) => {
+		const { createNotice } = dispatch( 'core/notices' );
+		return {
+			createNotice,
+		};
+	} ),
+] )( MediaReplaceFlow );
