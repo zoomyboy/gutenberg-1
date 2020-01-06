@@ -7,6 +7,22 @@
 		},
 		"customBackgroundColor": {
 			"type": "string"
+		},
+		"paddingUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"paddingSize": {
+			"type": "string",
+			"default": ""
+				},
+		"marginUnit": {
+			"type": "string",
+			"default": "px"
+				},
+		"marginSize": {
+			"type": "string",
+			"default": ""
 		}
 	}
 }
