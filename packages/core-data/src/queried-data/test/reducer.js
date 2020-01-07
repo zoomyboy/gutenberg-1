@@ -8,6 +8,7 @@ import deepFreeze from 'deep-freeze';
  */
 import reducer, {
 	getMergedItemIds,
+	itemIsComplete,
 } from '../reducer';
 
 describe( 'getMergedItemIds', () => {
@@ -89,12 +90,82 @@ describe( 'getMergedItemIds', () => {
 	} );
 } );
 
+describe( 'itemIsComplete', () => {
+	it( 'should assign received items as complete if no associated query', () => {
+		const original = deepFreeze( {} );
+		const state = itemIsComplete( original, {
+			type: 'RECEIVE_ITEMS',
+			items: [
+				{ id: 1, content: 'chicken', author: 'bob' },
+			],
+		} );
+
+		expect( state ).toEqual( {
+			1: true,
+		} );
+	} );
+
+	it( 'should assign received items as complete if non-fields-filtering query', () => {
+		const original = deepFreeze( {} );
+		const state = itemIsComplete( original, {
+			type: 'RECEIVE_ITEMS',
+			query: {
+				per_page: 5,
+			},
+			items: [
+				{ id: 1, content: 'chicken', author: 'bob' },
+			],
+		} );
+
+		expect( state ).toEqual( {
+			1: true,
+		} );
+	} );
+
+	it( 'should assign received items as incomplete if fields-filtering query', () => {
+		const original = deepFreeze( {} );
+		const state = itemIsComplete( original, {
+			type: 'RECEIVE_ITEMS',
+			query: {
+				_fields: 'content',
+			},
+			items: [
+				{ id: 1, content: 'chicken' },
+			],
+		} );
+
+		expect( state ).toEqual( {
+			1: false,
+		} );
+	} );
+
+	it( 'should defer to existing completeness when receiving filtered query', () => {
+		const original = deepFreeze( {
+			1: true,
+		} );
+		const state = itemIsComplete( original, {
+			type: 'RECEIVE_ITEMS',
+			query: {
+				_fields: 'content',
+			},
+			items: [
+				{ id: 1, content: 'chicken' },
+			],
+		} );
+
+		expect( state ).toEqual( {
+			1: true,
+		} );
+	} );
+} );
+
 describe( 'reducer', () => {
 	it( 'returns a default value of its combined keys defaults', () => {
 		const state = reducer( undefined, {} );
 
 		expect( state ).toEqual( {
 			items: {},
+			itemIsComplete: {},
 			queries: {},
 		} );
 	} );
@@ -103,6 +174,7 @@ describe( 'reducer', () => {
 		const original = deepFreeze( {
 			items: {},
 			queries: {},
+			itemIsComplete: {},
 		} );
 		const state = reducer( original, {
 			type: 'RECEIVE_ITEMS',
@@ -116,6 +188,9 @@ describe( 'reducer', () => {
 			items: {
 				1: { id: 1, name: 'abc' },
 			},
+			itemIsComplete: {
+				1: true,
+			},
 			queries: {
 				's=a': [ 1 ],
 			},
@@ -126,6 +201,7 @@ describe( 'reducer', () => {
 		const original = deepFreeze( {
 			items: {},
 			queries: {},
+			itemIsComplete: {},
 		} );
 		const state = reducer( original, {
 			type: 'RECEIVE_ITEMS',
@@ -137,6 +213,9 @@ describe( 'reducer', () => {
 		expect( state ).toEqual( {
 			items: {
 				1: { id: 1, name: 'abc' },
+			},
+			itemIsComplete: {
+				1: true,
 			},
 			queries: {},
 		} );
