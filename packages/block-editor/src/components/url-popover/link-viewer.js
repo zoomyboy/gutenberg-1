@@ -8,10 +8,14 @@ import classnames from 'classnames';
  */
 import { __ } from '@wordpress/i18n';
 import {
+	createSlotFill,
 	ExternalLink,
 	Button,
 } from '@wordpress/components';
 import { safeDecodeURI, filterURLForDisplay } from '@wordpress/url';
+import { useMemo } from '@wordpress/element';
+
+const { Slot, Fill } = createSlotFill( 'BlockEditorURLPopoverLinkViewer' );
 
 function LinkViewerUrl( { url, urlLabel, className } ) {
 	const linkClassName = classnames(
@@ -33,7 +37,7 @@ function LinkViewerUrl( { url, urlLabel, className } ) {
 	);
 }
 
-export default function LinkViewer( {
+function LinkViewer( {
 	className,
 	linkClassName,
 	onEditLinkClick,
@@ -51,6 +55,11 @@ export default function LinkViewer( {
 		>
 			<LinkViewerUrl url={ url } urlLabel={ urlLabel } className={ linkClassName } />
 			{ onEditLinkClick && <Button icon="edit" label={ __( 'Edit' ) } onClick={ onEditLinkClick } /> }
+			<Slot fillProps={ useMemo( () => ( { url } ), [ url ] ) } />
 		</div>
 	);
 }
+
+LinkViewer.Fill = Fill;
+
+export default LinkViewer;
