@@ -9,6 +9,7 @@ import classnames from 'classnames';
  */
 import {
 	useMemo,
+	useState,
 	Fragment,
 } from '@wordpress/element';
 import {
@@ -29,7 +30,7 @@ import {
 	Spinner,
 	Toolbar,
 	ToolbarGroup,
-    SelectControl,
+	SelectControl,
 } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 
@@ -50,9 +51,10 @@ function Navigation( {
 	menus,
 	fontSize,
 	hasExistingNavItems,
+	isRequestingPages,
 	hasResolvedPages,
-    isRequestingPages,
 	isRequestingMenus,
+	hasResolvedMenus,
 	setAttributes,
 	setFontSize,
 	updateNavItemBlocks,
@@ -60,6 +62,9 @@ function Navigation( {
 	//
 	// HOOKS
 	//
+
+	const [ selectedMenu, setSelectedMenu ] = useState( '' );
+
 	/* eslint-disable @wordpress/no-unused-vars-before-return */
 	const { TextColor } = __experimentalUseColors(
 		[ { name: 'textColor', property: 'color' } ],
@@ -112,6 +117,7 @@ function Navigation( {
 	}
 
 	const hasPages = hasResolvedPages && pages && pages.length;
+	const hasMenus = hasResolvedMenus && menus && menus.length;
 
 	const blockClassNames = classnames( 'wp-block-navigation', {
 		[ `items-justification-${ attributes.itemsJustification }` ]: attributes.itemsJustification,
@@ -143,21 +149,29 @@ function Navigation( {
 							{ __( 'Create from all top-level pages' ) }
 						</Button>
 
-						{ menus && menus.length && (
-
-							<SelectControl
-								label="Create from existing Menu"
-								value={ null }
-								onChange={ ( ) => {
-
-								} }
-								options={ menus.map( ( menu ) => {
-									return {
-										label: menu.name,
-										value: menu.slug,
-									};
-								} ) }
-							/>
+						{ hasMenus && (
+							<>
+								<SelectControl
+									label={ __( 'Create from existing Menu' ) }
+									value={ selectedMenu }
+									onChange={ ( value ) => {
+										setSelectedMenu( value );
+									} }
+									options={ menus.map( ( menu ) => {
+										return {
+											label: menu.name,
+											value: menu.slug,
+										};
+									} ) }
+								/>
+								<Button
+									isSecondary
+									className="wp-block-navigation-placeholder__button"
+									onClick={ () => {} }
+								>
+									{ __( 'Create from Menu' ) }
+								</Button>
+							</>
 						) }
 
 						<Button
@@ -212,7 +226,7 @@ function Navigation( {
 			</InspectorControls>
 			<TextColor>
 				<div className={ blockClassNames } style={ blockInlineStyles }>
-					{ ! hasExistingNavItems && (isRequestingPages || isRequestingMenus) && <><Spinner /> { __( 'Loading Navigation…' ) } </> }
+					{ ! hasExistingNavItems && ( isRequestingPages || isRequestingMenus ) && <><Spinner /> { __( 'Loading Navigation…' ) } </> }
 
 					<InnerBlocks
 						allowedBlocks={ [ 'core/navigation-link' ] }
@@ -247,6 +261,7 @@ export default compose( [
 			isRequestingPages: select( 'core/data' ).isResolving( ...pagesSelect ),
 			isRequestingMenus: select( 'core/data' ).isResolving( ...menusSelect ),
 			hasResolvedPages: select( 'core/data' ).hasFinishedResolution( ...pagesSelect ),
+			hasResolvedMenus: select( 'core/data' ).hasFinishedResolution( ...menusSelect ),
 		};
 	} ),
 	withDispatch( ( dispatch, { clientId } ) => {
