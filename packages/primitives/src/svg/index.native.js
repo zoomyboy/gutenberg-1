@@ -14,6 +14,10 @@ export {
 	Path,
 	Polygon,
 	Rect,
+	Defs,
+	RadialGradient,
+	LinearGradient,
+	Stop,
 } from 'react-native-svg';
 
 export const SVG = ( { className = '', isPressed, ...props } ) => {
