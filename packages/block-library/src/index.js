@@ -66,6 +66,7 @@ import * as socialLink from './social-link';
 // Full Site Editing Blocks
 import * as siteTitle from './site-title';
 import * as templatePart from './template-part';
+import * as post from './post';
 import * as postTitle from './post-title';
 import * as postContent from './post-content';
 
@@ -187,7 +188,7 @@ export const __experimentalRegisterExperimentalCoreBlocks =
 
 				// Register Full Site Editing Blocks.
 				...( __experimentalEnableFullSiteEditing ?
-					[ siteTitle, templatePart, postTitle, postContent ] :
+					[ siteTitle, templatePart, post, postTitle, postContent ] :
 					[] ),
 			].forEach( registerBlock );
 		} :
