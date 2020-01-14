@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { uniqueId } from 'lodash';
+
+/**
  * WordPress dependencies
  */
 import { useState, createRef, renderToString } from '@wordpress/element';
@@ -40,6 +45,7 @@ const MediaReplaceFlow = (
 		onSelectURL,
 		name = __( 'Replace' ),
 		createNotice,
+		removeNotice,
 	}
 ) => {
 	const [ showURLInput, setShowURLInput ] = useState( false );
@@ -49,6 +55,7 @@ const MediaReplaceFlow = (
 		return select( 'core/block-editor' ).getSettings().mediaUpload;
 	}, [] );
 	const editMediaButtonRef = createRef();
+	const errorNoticeID = uniqueId();
 
 	const stopPropagation = ( event ) => {
 		event.stopPropagation();
@@ -64,6 +71,7 @@ const MediaReplaceFlow = (
 	const onError = ( message ) => {
 		createNotice( 'error', renderToString( message ), {
 			speak: true,
+			id: errorNoticeID,
 			isDismissible: true,
 			__unstableHTML: true,
 		} );
@@ -73,6 +81,7 @@ const MediaReplaceFlow = (
 		onSelect( media );
 		setMediaURLValue( media.url );
 		speak( __( 'The media file has been replaced' ) );
+		removeNotice( errorNoticeID );
 	};
 
 	const selectURL = ( newURL ) => {
@@ -200,9 +209,10 @@ const MediaReplaceFlow = (
 
 export default compose( [
 	withDispatch( ( dispatch ) => {
-		const { createNotice } = dispatch( 'core/notices' );
+		const { createNotice, removeNotice } = dispatch( 'core/notices' );
 		return {
 			createNotice,
+			removeNotice,
 		};
 	} ),
 ] )( MediaReplaceFlow );
