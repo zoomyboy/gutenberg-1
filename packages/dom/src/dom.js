@@ -672,6 +672,10 @@ export function wrap( newNode, referenceNode ) {
  * @return {string} The text content with any html removed.
  */
 export function __unstableStripHTML( html ) {
+	if ( ! html ) {
+		return '';
+	}
+
 	const document = new DOMParser().parseFromString( html, 'text/html' );
 	return document.body.textContent || '';
 }
