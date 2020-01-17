@@ -28,6 +28,7 @@ export {
 	updateCategory,
 } from './categories';
 export {
+	DEFAULT_BLOCK_TYPE_SETTINGS,
 	registerBlockType,
 	registerBlockCollection,
 	unregisterBlockType,

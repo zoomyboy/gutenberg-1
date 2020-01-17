@@ -16,11 +16,13 @@ import {
 	identity,
 	difference,
 	omitBy,
+	filter,
 } from 'lodash';
 
 /**
  * WordPress dependencies
  */
+import isShallowEqual from '@wordpress/is-shallow-equal';
 import { combineReducers } from '@wordpress/data';
 import { isReusableBlock } from '@wordpress/blocks';
 
@@ -354,6 +356,8 @@ function withPersistentBlockChange( reducer ) {
 
 	return ( state, action ) => {
 		let nextState = reducer( state, action );
+		nextState.persistentChangeRootClientId =
+			action.type === 'UPDATE_BLOCK_ATTRIBUTES' && action.rootClientId;
 
 		const isExplicitPersistentChange = action.type === 'MARK_LAST_CHANGE_AS_PERSISTENT' || markNextChangeAsNotPersistent;
 
@@ -500,8 +504,18 @@ const withBlockReset = ( reducer ) => ( state, action ) => {
 				...mapBlockParents( action.blocks ),
 			},
 			cache: {
-				...omit( state.cache, visibleClientIds ),
-				...mapValues( flattenBlocks( action.blocks ), () => ( {} ) ),
+				...state.cache,
+				...mapValues(
+					filter(
+						flattenBlocks( action.blocks ),
+						( block ) =>
+							! isShallowEqual( block, {
+								...state.byClientId[ block.clientId ],
+								attributes: state.attributes[ block.clientId ],
+							} )
+					),
+					() => ( {} )
+				),
 			},
 		};
 	}

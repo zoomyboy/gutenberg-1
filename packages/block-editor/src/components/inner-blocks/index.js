@@ -184,7 +184,7 @@ InnerBlocks = compose( [
 			hasOverlay: block.name !== 'core/template' && ! isBlockSelected( clientId ) && ! hasSelectedInnerBlock( clientId, true ),
 			parentLock: getTemplateLock( rootClientId ),
 			enableClickThrough: isNavigationMode() || isSmallScreen,
-			isLastBlockChangePersistent: isLastBlockChangePersistent(),
+			isLastBlockChangePersistent: isLastBlockChangePersistent( clientId ),
 		};
 	} ),
 	withDispatch( ( dispatch, ownProps ) => {
