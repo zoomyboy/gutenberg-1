@@ -186,7 +186,7 @@ function LinkControl( {
 						<Button
 							isSecondary
 							onClick={ () => setIsEditingLink( true ) }
-							className="block-editor-link-control__search-item-action block-editor-link-control__search-item-action--edit"
+							className="block-editor-link-control__search-item-action"
 						>
 							{ __( 'Edit' ) }
 						</Button>
