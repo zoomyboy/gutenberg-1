@@ -39,10 +39,11 @@ add_filter( 'safe_style_css', 'gutenberg_safe_style_css_column_flex_basis' );
  *
  * @param string $pre_render The pre-rendered content. Default null.
  * @param array  $block The block being rendered.
+ * @param array  $context The block context.
  *
  * @return string String of rendered HTML.
  */
-function gutenberg_provide_render_callback_with_block_object( $pre_render, $block ) {
+function gutenberg_provide_render_callback_with_block_object( $pre_render, $block, $context = array() ) {
 	global $post;
 
 	$source_block = $block;
@@ -55,12 +56,42 @@ function gutenberg_provide_render_callback_with_block_object( $pre_render, $bloc
 	$block_content = '';
 	$index         = 0;
 
-	foreach ( $block['innerContent'] as $chunk ) {
-		$block_content .= is_string( $chunk ) ? $chunk : render_block( $block['innerBlocks'][ $index++ ] );
-	}
-
 	if ( ! is_array( $block['attrs'] ) ) {
 		$block['attrs'] = array();
+	}
+
+	$block['context'] = array();
+	$next_context     = $context;
+	if ( $block_type ) {
+		if ( isset( $block_type->context ) ) {
+			foreach ( $block_type->context as $attribute_name => $block_names ) {
+				$block_names = is_array( $block_names ) ? $block_names : array( $block_names );
+				foreach ( $block_names as $block_name ) {
+					if ( isset( $context[ $block_name ][ $attribute_name ] ) ) {
+						$block['context'][ $attribute_name ] = $context[ $block_name ][ $attribute_name ];
+					}
+				}
+			}
+		}
+		if ( isset( $block_type->attributes ) ) {
+			foreach ( $block_type->attributes as $attribute_name => $attribute_config ) {
+				if ( $attribute_config['context'] && isset( $block['attrs'][ $attribute_name ] ) ) {
+					if ( ! isset( $next_context[ $block['blockName'] ] ) ) {
+						$next_context[ $block['blockName'] ] = array();
+					}
+					$next_context[ $block['blockName'] ][ $attribute_name ] = $block['attrs'][ $attribute_name ];
+				}
+			}
+		}
+	}
+
+	foreach ( $block['innerContent'] as $chunk ) {
+		if ( is_string( $chunk ) ) {
+			$block_content .= $chunk;
+		} else {
+			$inner_block    = $block['innerBlocks'][ $index++ ];
+			$block_content .= gutenberg_provide_render_callback_with_block_object( null, $inner_block, $next_context );
+		}
 	}
 
 	if ( $is_dynamic ) {
