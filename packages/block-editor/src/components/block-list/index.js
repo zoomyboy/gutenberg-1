@@ -17,6 +17,7 @@ import BlockListAppender from '../block-list-appender';
 import __experimentalBlockListFooter from '../block-list-footer';
 import RootContainer from './root-container';
 import useBlockDropZone from '../block-drop-zone';
+import BlockContext from './block-context';
 
 /**
  * If the block count exceeds the threshold, we disable the reordering animation
@@ -134,4 +135,6 @@ function BlockList( {
 // This component needs to always be synchronous
 // as it's the one changing the async mode
 // depending on the block selection.
-export default forceSyncUpdates( BlockList );
+BlockList = forceSyncUpdates( BlockList );
+BlockList.BlockContext = BlockContext;
+export default BlockList;
