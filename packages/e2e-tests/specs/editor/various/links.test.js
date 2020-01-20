@@ -373,7 +373,7 @@ describe( 'Links', () => {
 
 		// Focus on first paragraph, so the link popover will appear over the subsequent ones
 		await page.click( '[aria-label="Block navigation"]' );
-		await page.click( '.block-editor-block-navigation__item button' );
+		await page.click( '.block-editor-block-navigation-item__button' );
 
 		// Select some text
 		await pressKeyWithModifier( 'shiftAlt', 'ArrowLeft' );
