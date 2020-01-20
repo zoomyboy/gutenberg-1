@@ -41,7 +41,6 @@ _Parameters_
 
 -   _state_ `Object`: Store state.
 -   _clientId_ `string`: ClientId for the block.
--   _direction_ `[(|)]`: The direction blocks are layed out in, can be 'horizontal' or 'vertical'.
 
 _Returns_
 

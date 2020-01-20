@@ -2592,6 +2592,9 @@ describe( 'selectors', () => {
 					456: '',
 				},
 			},
+			blockListSettings: {
+				'': {},
+			},
 		};
 
 		it( 'returns the block title and row when the block has no `getAccessibilityLabel` function', () => {
@@ -2603,11 +2606,20 @@ describe( 'selectors', () => {
 		} );
 
 		it( 'returns column instead of row when the direction is horizontal', () => {
-			expect( getAccessibleBlockLabel( state, 456, 'horizontal' ) ).toBe( 'Test Block B Block. Column 2. Some content' );
+			const stateWithHorizontalBlockList = {
+				...state,
+				blockListSettings: {
+					'': {
+						__experimentalMoverDirection: 'horizontal',
+					},
+				},
+			};
+			expect( getAccessibleBlockLabel( stateWithHorizontalBlockList, 456 ) ).toBe( 'Test Block B Block. Column 2. Some content' );
 		} );
 
 		it( 'returns the block title and row when attributes are undefined', () => {
 			const stateWithEmptyAttributes = {
+				...state,
 				blocks: {
 					...state.blocks,
 					attributes: {
@@ -2621,6 +2633,7 @@ describe( 'selectors', () => {
 
 		it( 'falls back to using the `label` when the accessibility label is undefined', () => {
 			const stateWithMissingAttribute = {
+				...state,
 				blocks: {
 					...state.blocks,
 					attributes: {
@@ -2634,6 +2647,7 @@ describe( 'selectors', () => {
 
 		it( 'removes any html elements from the output of the `getLabel` function', () => {
 			const stateWithHTMLContent = {
+				...state,
 				blocks: {
 					...state.blocks,
 					attributes: {

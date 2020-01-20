@@ -23,10 +23,10 @@ import BlockTitle from '../block-title';
  *
  * @return {WPComponent} The component to be rendered.
  */
-function BlockBreadcrumb( { clientId, moverDirection, ...props } ) {
+function BlockBreadcrumb( { clientId, ...props } ) {
 	const label = useSelect(
-		( select ) => select( 'core/block-editor' ).getAccessibleBlockLabel( clientId, moverDirection ),
-		[ clientId, moverDirection ]
+		( select ) => select( 'core/block-editor' ).getAccessibleBlockLabel( clientId ),
+		[ clientId ]
 	);
 	const {
 		setNavigationMode,

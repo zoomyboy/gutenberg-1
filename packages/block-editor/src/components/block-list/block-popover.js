@@ -160,7 +160,6 @@ function BlockPopover( {
 			{ shouldShowBreadcrumb && (
 				<BlockBreadcrumb
 					clientId={ clientId }
-					moverDirection={ moverDirection }
 					data-align={ align }
 				/>
 			) }

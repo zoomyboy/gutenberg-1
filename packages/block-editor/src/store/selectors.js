@@ -1578,12 +1578,10 @@ export function getBlockLabel( state, clientId ) {
  *
  * @param {Object} state    Store state.
  * @param {string} clientId ClientId for the block.
- * @param {"horizontal"|"vertical"} [direction="vertical"] The direction blocks are layed out in,
- *                                                         can be 'horizontal' or 'vertical'.
  *
  * @return {string} The accessibility label for the block.
  */
-export function getAccessibleBlockLabel( state, clientId, direction = 'vertical' ) {
+export function getAccessibleBlockLabel( state, clientId ) {
 	const blockName = getBlockName( state, clientId );
 
 	const {
@@ -1592,8 +1590,8 @@ export function getAccessibleBlockLabel( state, clientId, direction = 'vertical'
 	} = getBlockType( blockName );
 
 	const rootClientId = getBlockRootClientId( state, clientId );
-
 	const attributes = getBlockAttributes( state, clientId );
+	const { __experimentalMoverDirection: direction = 'vertical' } = getBlockListSettings( state, rootClientId ) || {};
 
 	// First, attempt to get the accessibility label if the block has one defined.
 	let label = getAccessibilityLabel ? toPlainText( getAccessibilityLabel( attributes ) ) : undefined;
