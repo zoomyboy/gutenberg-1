@@ -32,7 +32,7 @@ exports[`Storyshots ComboboxControl Default 1`] = `
     />
     <button
       aria-label="Font Size"
-      className="components-button"
+      className="components-button components-combobox-control__button-button"
       id="downshift-null-toggle-button"
       onClick={[Function]}
       tabIndex={-1}
