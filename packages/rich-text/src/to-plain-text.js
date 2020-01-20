@@ -1,4 +1,7 @@
-const { DOMParser } = window;
+/**
+ * Internal dependencies
+ */
+import { create } from './create';
 
 /**
  * Removes any HTML tags from the provided string.
@@ -12,6 +15,5 @@ export function toPlainText( html ) {
 		return '';
 	}
 
-	const document = new DOMParser().parseFromString( html, 'text/html' );
-	return document.body.textContent || '';
+	return create( { html } ).text;
 }
