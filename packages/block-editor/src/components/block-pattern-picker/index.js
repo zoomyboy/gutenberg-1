@@ -35,7 +35,11 @@ function BlockPatternPicker( {
 				*/
 				/* eslint-disable jsx-a11y/no-redundant-roles */
 			}
-			<ul className="block-editor-block-pattern-picker__patterns" role="list">
+			<ul
+				className="block-editor-block-pattern-picker__patterns"
+				role="list"
+				aria-label={ __( 'Block patterns' ) }
+			>
 				{ patterns.map( ( pattern ) => (
 					<li key={ pattern.name }>
 						<Button
@@ -44,8 +48,9 @@ function BlockPatternPicker( {
 							iconSize={ 48 }
 							onClick={ () => onSelect( pattern ) }
 							className="block-editor-block-pattern-picker__pattern"
-							label={ pattern.label }
-						/>
+						>
+							{ pattern.label }
+						</Button>
 					</li>
 				) ) }
 			</ul>
