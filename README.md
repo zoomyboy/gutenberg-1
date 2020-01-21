@@ -12,7 +12,7 @@ Gutenberg development precedes what is shipped in a WordPress releases, usually 
 
 ## Getting started
 
-Get hands on with the block editor, check out the [Block Editor live demo](https://wordpress.org/gutenberg/) that allows you to play with a test instance of the editor.
+Get hands on, check out the [Block Editor live demo](https://wordpress.org/gutenberg/) to play with a test instance of the editor.
 
 ### Using Gutenberg
 
@@ -38,7 +38,7 @@ As with all WordPress projects, we want to ensure a welcoming environment for ev
 
 ## Get involved
 
-You can join us in the `#core-editor` channel in Slack, see [WordPress Slack page](https://make.wordpress.org/chat/) for signup information, it is free to join. 
+You can join us in the `#core-editor` channel in Slack, see [WordPress Slack page](https://make.wordpress.org/chat/) for signup information, it is free to join.
 
 **Weekly meetings** The Editor Team meets weekly on Wednesdays at 14:00 UTC in Slack. If you can not join the meeting, agenda and notes are posted to the [Make WordPress Blog](https://make.wordpress.org/core/).
 
