@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import { AlignmentHookSettingsProvider, InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -14,15 +14,22 @@ const UI_PARTS = {
 	hasSelectedUI: false,
 };
 
+// Inside buttons block alignment options are not supported.
+const alignmentHooksSetting = {
+	getContextualValidAlignments: () => [],
+};
+
 function ButtonsEdit( { className } ) {
 	return (
 		<div className={ className }>
-			<InnerBlocks
-				allowedBlocks={ ALLOWED_BLOCKS }
-				template={ BUTTONS_TEMPLATE }
-				__experimentalUIParts={ UI_PARTS }
-				__experimentalMoverDirection="horizontal"
-			/>
+			<AlignmentHookSettingsProvider value={ alignmentHooksSetting }>
+				<InnerBlocks
+					allowedBlocks={ ALLOWED_BLOCKS }
+					template={ BUTTONS_TEMPLATE }
+					__experimentalUIParts={ UI_PARTS }
+					__experimentalMoverDirection="horizontal"
+				/>
+			</AlignmentHookSettingsProvider>
 		</div>
 	);
 }
