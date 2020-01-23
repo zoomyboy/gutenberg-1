@@ -99,7 +99,7 @@ function Layout() {
 				<EditorRegions
 					className={ className }
 					header={ <Header /> }
-					sidebar={ ! publishSidebarOpened && (
+					sidebar={ (
 						<>
 							<SettingsSidebar />
 							<Sidebar.Slot />
