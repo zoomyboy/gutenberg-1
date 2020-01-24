@@ -70,6 +70,7 @@ import * as postContent from './post-content';
 import * as postAuthor from './post-author';
 import * as postDate from './post-date';
 import * as postExcerpt from './post-excerpt';
+import * as postFeaturedImage from './post-featured-image';
 
 /**
  * Function to register an individual block.
@@ -197,6 +198,7 @@ export const __experimentalRegisterExperimentalCoreBlocks =
 						postAuthor,
 						postDate,
 						postExcerpt,
+						postFeaturedImage,
 					] :
 					[] ),
 			].forEach( registerBlock );
