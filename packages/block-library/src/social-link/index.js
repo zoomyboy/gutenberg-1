@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import edit from './edit';
+import save from './save';
 import socialList from './social-list';
 
 const commonAttributes = {
@@ -17,6 +18,7 @@ const commonAttributes = {
 		html: false,
 	},
 	edit,
+	save,
 };
 
 // Create individual blocks out of each site in social-list.js

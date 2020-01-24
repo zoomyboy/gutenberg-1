@@ -19,7 +19,7 @@ import { __, sprintf } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { getIconBySite, getNameBySite } from './social-list';
+import { getNameBySite } from './social-list';
 
 const SocialLinkEdit = ( { attributes, setAttributes, isSelected } ) => {
 	const { url, site, label } = attributes;
@@ -31,7 +31,7 @@ const SocialLinkEdit = ( { attributes, setAttributes, isSelected } ) => {
 	);
 
 	// Import icon.
-	const IconComponent = getIconBySite( site );
+
 	const socialLinkName = getNameBySite( site );
 
 	return (
@@ -52,7 +52,7 @@ const SocialLinkEdit = ( { attributes, setAttributes, isSelected } ) => {
 				className={ classes }
 				onClick={ () => setPopover( true ) }
 			>
-				<IconComponent />
+				<em />
 				{ isSelected && showURLPopover && (
 					<URLPopover
 						onClose={ () => setPopover( false ) }

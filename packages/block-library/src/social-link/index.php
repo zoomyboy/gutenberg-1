@@ -88,7 +88,6 @@ function register_block_core_social_link() {
 						'type' => 'string',
 					),
 				),
-				'render_callback' => 'render_core_social_link',
 			)
 		);
 	}
