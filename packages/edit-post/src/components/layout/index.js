@@ -13,6 +13,7 @@ import {
 	EditorNotices,
 	PostPublishPanel,
 	EditorKeyboardShortcutsRegister,
+	TableOfContents,
 } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import {
@@ -64,6 +65,7 @@ function Layout() {
 		hasFixedToolbar,
 		previousShortcut,
 		nextShortcut,
+		isTextModeEnabled,
 	} = useSelect( ( select ) => {
 		return ( {
 			hasFixedToolbar: select( 'core/edit-post' ).isFeatureActive( 'fixedToolbar' ),
@@ -76,6 +78,7 @@ function Layout() {
 			isSaving: select( 'core/edit-post' ).isSavingMetaBoxes(),
 			previousShortcut: select( 'core/keyboard-shortcuts' ).getAllShortcutRawKeyCombinations( 'core/edit-post/previous-region' ),
 			nextShortcut: select( 'core/keyboard-shortcuts' ).getAllShortcutRawKeyCombinations( 'core/edit-post/next-region' ),
+			isTextModeEnabled: select( 'core/edit-post' ).getEditorMode() === 'text',
 		} );
 	}, [] );
 	const showPageTemplatePicker = __experimentalUsePageTemplatePickerVisible();
@@ -120,6 +123,8 @@ function Layout() {
 					footer={ isRichEditingEnabled && mode === 'visual' && (
 						<div className="edit-post-layout__footer">
 							<BlockBreadcrumb />
+
+							<TableOfContents hasOutlineItemsDisabled={ isTextModeEnabled } />
 						</div>
 					) }
 					publish={ publishSidebarOpened ? (
