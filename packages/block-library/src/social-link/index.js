@@ -27,7 +27,7 @@ export const sites = Object.keys( socialList ).map(
 			name: 'core/social-link-' + site,
 			settings: {
 				title: siteParams.name,
-				icon: siteParams.icon,
+				icon: 'share-alt2',
 				description: __( 'Link to ' + siteParams.name ),
 				...commonAttributes,
 				attributes: {
