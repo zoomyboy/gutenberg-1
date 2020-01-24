@@ -29,6 +29,9 @@ const {
 const {
 	camelCaseDash,
 } = require( './string' );
+const {
+	makeChangeLog,
+} = require( './changelog/make-change-log' );
 
 module.exports = {
 	buildWordPress,
@@ -47,4 +50,5 @@ module.exports = {
 	downloadWordPressZip,
 	mergeYAMLConfigs,
 	spawnScript,
+	makeChangeLog,
 };
