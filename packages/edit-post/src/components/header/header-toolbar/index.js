@@ -38,11 +38,11 @@ function HeaderToolbar() {
 			aria-label={ toolbarAriaLabel }
 		>
 			<Inserter disabled={ ! showInserter } position="bottom right" showInserterHelpPanel />
+			<ToolSelector />
 			<EditorHistoryUndo />
 			<EditorHistoryRedo />
-			<TableOfContents hasOutlineItemsDisabled={ isTextModeEnabled } />
 			<BlockNavigationDropdown isDisabled={ isTextModeEnabled } />
-			<ToolSelector />
+			<TableOfContents hasOutlineItemsDisabled={ isTextModeEnabled } />
 			{ ( hasFixedToolbar || ! isLargeViewport ) && (
 				<div className="edit-post-header-toolbar__block-toolbar">
 					<BlockToolbar />
