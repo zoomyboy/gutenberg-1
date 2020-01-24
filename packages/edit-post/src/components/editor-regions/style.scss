@@ -83,6 +83,7 @@ html {
 	bottom: 0;
 	left: 0;
 	background: $white;
+	color: $dark-gray-primary;
 
 	&:empty {
 		display: none;
@@ -102,6 +103,7 @@ html {
 	height: auto;  // Keep the height flexible.
 	border-bottom: $border-width solid $light-gray-500;
 	z-index: z-index(".edit-post-editor-regions__header");
+	color: $dark-gray-primary;
 
 	// On Mobile the header is sticky.
 	position: sticky;
@@ -119,6 +121,7 @@ html {
 	flex-shrink: 0;
 	overflow: auto;
 	border-top: $border-width solid $light-gray-500;
+	color: $dark-gray-primary;
 
 	// On Mobile the footer is hidden
 	display: none;
@@ -135,6 +138,7 @@ html {
 	left: auto;
 	right: 0;
 	width: $sidebar-width;
+	color: $dark-gray-primary;
 
 	&:focus {
 		top: auto;
