@@ -162,7 +162,7 @@ const BlockComponent = forwardRef( ( {
 
 		event.preventDefault();
 
-		if ( keyCode !== ENTER ) {
+		if ( keyCode === ENTER ) {
 			insertDefaultBlock( {}, rootClientId, index + 1 );
 		} else {
 			removeBlock( clientId );
