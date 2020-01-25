@@ -7,7 +7,6 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { useState, createContext, useMemo } from '@wordpress/element';
-
 import {
 	getBlockType,
 	getSaveElement,

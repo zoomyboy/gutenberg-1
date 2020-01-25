@@ -14,8 +14,6 @@ import {
 	publishPost,
 	saveDraft,
 	clickOnMoreMenuItem,
-	pressKeyWithModifier,
-	getEditedPostContent,
 } from '@wordpress/e2e-test-utils';
 
 /** @typedef {import('puppeteer').Page} Page */
@@ -248,8 +246,6 @@ describe( 'Preview with Custom Fields enabled', () => {
 		await editorPage.keyboard.press( 'Backspace' );
 		await editorPage.keyboard.type( '2' );
 
-		expect( await getEditedPostContent() ).toMatchSnapshot();
-
 		// Open the preview page.
 		await waitForPreviewNavigation( previewPage );
 
@@ -261,20 +257,5 @@ describe( 'Preview with Custom Fields enabled', () => {
 
 		// Make sure the editor is active for the afterEach function.
 		await editorPage.bringToFront();
-	} );
-
-	// eslint-disable-next-line jest/no-disabled-tests
-	it.skip( 'test', async () => {
-		await page.keyboard.type( 'title 1' );
-		await page.keyboard.press( 'Tab' );
-		await page.keyboard.type( 'content 1' );
-		await page.click( '.editor-post-title__input' );
-		await pressKeyWithModifier( 'primary', 'a' );
-		await page.keyboard.type( 'title 2' );
-		await page.keyboard.press( 'Tab' );
-		await pressKeyWithModifier( 'primary', 'a' );
-		await page.keyboard.type( 'content 2' );
-
-		expect( await getEditedPostContent() ).toMatchSnapshot();
 	} );
 } );
