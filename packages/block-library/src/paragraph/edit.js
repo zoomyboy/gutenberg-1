@@ -20,7 +20,7 @@ import {
 	RichText,
 	withFontSizes,
 	__experimentalUseColors,
-	Block,
+	__experimentalBlock as Block,
 } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import { compose } from '@wordpress/compose';
