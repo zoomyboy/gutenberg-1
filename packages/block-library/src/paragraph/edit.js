@@ -20,6 +20,7 @@ import {
 	RichText,
 	withFontSizes,
 	__experimentalUseColors,
+	Block,
 } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import { compose } from '@wordpress/compose';
@@ -147,7 +148,7 @@ function ParagraphBlock( {
 					<RichText
 						ref={ ref }
 						identifier="content"
-						tagName="p"
+						tagName={ Block.p }
 						className={ classnames( 'wp-block-paragraph', className, {
 							'has-drop-cap': dropCap,
 							[ `has-text-align-${ align }` ]: align,

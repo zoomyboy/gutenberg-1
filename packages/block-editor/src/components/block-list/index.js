@@ -102,7 +102,7 @@ function BlockList( {
 							// This prop is explicitely computed and passed down
 							// to avoid being impacted by the async mode
 							// otherwise there might be a small delay to trigger the animation.
-							animateOnChange={ index }
+							index={ index }
 							enableAnimation={ enableAnimation }
 							hasSelectedUI={ __experimentalUIParts.hasSelectedUI }
 							className={ clientId === targetClientId ? 'is-drop-target' : undefined }

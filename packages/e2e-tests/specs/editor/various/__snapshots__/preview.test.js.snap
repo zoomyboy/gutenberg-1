@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preview with Custom Fields enabled displays edits to the post title and content in the preview 1`] = `
+"<!-- wp:paragraph -->
+<p>content 2</p>
+<!-- /wp:paragraph -->"
+`;
+
+exports[`Preview with Custom Fields enabled test 1`] = `
+"<!-- wp:paragraph -->
+<p>content 2</p>
+<!-- /wp:paragraph -->"
+`;
