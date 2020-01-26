@@ -71,7 +71,7 @@ export const withInspectorControl = createHigherOrderComponent( ( BlockEdit ) =>
 					<InspectorAdvancedControls>
 						<TextControl
 							className="html-anchor-control"
-							label={ __( 'HTML Anchor' ) }
+							label={ __( 'HTML anchor' ) }
 							help={ (
 								<>
 									{ __( 'Enter a word or two — without spaces — to make a unique web address just for this heading, called an “anchor.” Then, you’ll be able to link directly to this section of your page.' ) }
