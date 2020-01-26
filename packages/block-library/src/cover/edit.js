@@ -378,7 +378,7 @@ function CoverEdit( {
 						>
 							{ !! url && (
 								<RangeControl
-									label={ __( 'Background Opacity' ) }
+									label={ __( 'Background opacity' ) }
 									value={ dimRatio }
 									onChange={ ( newDimRation ) => setAttributes( { dimRatio: newDimRation } ) }
 									min={ 0 }
