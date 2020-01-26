@@ -124,7 +124,7 @@ function NavigationLinkEdit( {
 						onChange={ ( titleValue ) => {
 							setAttributes( { title: titleValue } );
 						} }
-						label={ __( 'Title Attribute' ) }
+						label={ __( 'Title attribute' ) }
 						help={ __( 'Provide more context about where the link goes.' ) }
 					/>
 					<ToggleControl

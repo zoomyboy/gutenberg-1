@@ -188,10 +188,10 @@ class VideoEdit extends Component {
 								className="editor-video-poster-control"
 							>
 								<BaseControl.VisualLabel>
-									{ __( 'Poster Image' ) }
+									{ __( 'Poster image' ) }
 								</BaseControl.VisualLabel>
 								<MediaUpload
-									title={ __( 'Select Poster Image' ) }
+									title={ __( 'Select poster image' ) }
 									onSelect={ this.onSelectPoster }
 									allowedTypes={ VIDEO_POSTER_ALLOWED_MEDIA_TYPES }
 									render={ ( { open } ) => (

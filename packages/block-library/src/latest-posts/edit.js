@@ -76,7 +76,7 @@ class LatestPostsEdit extends Component {
 			<InspectorControls>
 				<PanelBody title={ __( 'Post Content Settings' ) }>
 					<ToggleControl
-						label={ __( 'Post Content' ) }
+						label={ __( 'Post content' ) }
 						checked={ displayPostContent }
 						onChange={ ( value ) => setAttributes( { displayPostContent: value } ) }
 					/>
@@ -86,7 +86,7 @@ class LatestPostsEdit extends Component {
 						selected={ displayPostContentRadio }
 						options={ [
 							{ label: __( 'Excerpt' ), value: 'excerpt' },
-							{ label: __( 'Full Post' ), value: 'full_post' },
+							{ label: __( 'Full post' ), value: 'full_post' },
 						] }
 						onChange={ ( value ) => setAttributes( { displayPostContentRadio: value } ) }
 					/>

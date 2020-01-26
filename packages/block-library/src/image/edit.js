@@ -419,7 +419,7 @@ export class ImageEdit extends Component {
 				<InspectorControls>
 					<PanelBody title={ __( 'Image Settings' ) }>
 						<TextareaControl
-							label={ __( 'Alt Text (Alternative Text)' ) }
+							label={ __( 'Alt text (alternative text)' ) }
 							value={ alt }
 							onChange={ this.updateAlt }
 							help={
@@ -446,7 +446,7 @@ export class ImageEdit extends Component {
 				</InspectorControls>
 				<InspectorAdvancedControls>
 					<TextControl
-						label={ __( 'Title Attribute' ) }
+						label={ __( 'Title attribute' ) }
 						value={ title || '' }
 						onChange={ this.onSetTitle }
 						help={

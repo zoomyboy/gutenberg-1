@@ -40,7 +40,7 @@ const SocialLinkEdit = ( { attributes, setAttributes, isSelected } ) => {
 				<PanelBody title={ sprintf( __( '%s Label' ), socialLinkName ) } initialOpen={ false }>
 					<PanelRow>
 						<TextControl
-							label={ __( 'Link Label' ) }
+							label={ __( 'Link label' ) }
 							help={ __( 'Briefly describe the link to help screen reader users.' ) }
 							value={ label }
 							onChange={ ( value ) => setAttributes( { label: value } ) }
@@ -67,7 +67,7 @@ const SocialLinkEdit = ( { attributes, setAttributes, isSelected } ) => {
 								<URLInput
 									value={ url }
 									onChange={ ( nextURL ) => setAttributes( { url: nextURL } ) }
-									placeholder={ __( 'Enter Address' ) }
+									placeholder={ __( 'Enter address' ) }
 									disableSuggestions={ true }
 								/>
 							</div>

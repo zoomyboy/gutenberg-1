@@ -364,14 +364,14 @@ class GalleryEdit extends Component {
 							required
 						/> }
 						<ToggleControl
-							label={ __( 'Crop Images' ) }
+							label={ __( 'Crop images' ) }
 							{ ...MOBILE_CONTROL_PROPS }
 							checked={ !! imageCrop }
 							onChange={ this.toggleImageCrop }
 							help={ this.getImageCropHelp }
 						/>
 						<SelectControl
-							label={ __( 'Link To' ) }
+							label={ __( 'Link to' ) }
 							{ ...mobileLinkToProps }
 							value={ linkTo }
 							onChange={ this.setLinkTo }
@@ -379,7 +379,7 @@ class GalleryEdit extends Component {
 						/>
 						{ shouldShowSizeOptions && (
 							<SelectControl
-								label={ __( 'Images Size' ) }
+								label={ __( 'Images size' ) }
 								{ ...MOBILE_CONTROL_PROPS_SEPARATOR_NONE }
 								value={ sizeSlug }
 								options={ imageSizeOptions }
