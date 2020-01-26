@@ -2044,7 +2044,7 @@ exports[`Storyshots Components/ColorPalette Default 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Custom Color
+        Custom color
       </button>
     </div>
     <button
@@ -2138,7 +2138,7 @@ exports[`Storyshots Components/ColorPalette With Knobs 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Custom Color
+        Custom color
       </button>
     </div>
     <button
