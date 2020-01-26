@@ -204,7 +204,7 @@ export class FocalPointPicker extends Component {
 					</div>
 				</div>
 				<div className="components-focal-point-picker_position-display-container">
-					<BaseControl label={ __( 'Horizontal Pos.' ) } id={ horizontalPositionId }>
+					<BaseControl label={ __( 'Horizontal pos.' ) } id={ horizontalPositionId }>
 						<input
 							className="components-text-control__input"
 							id={ horizontalPositionId }
@@ -216,7 +216,7 @@ export class FocalPointPicker extends Component {
 						/>
 						<span>%</span>
 					</BaseControl>
-					<BaseControl label={ __( 'Vertical Pos.' ) } id={ verticalPositionId }>
+					<BaseControl label={ __( 'Vertical pos.' ) } id={ verticalPositionId }>
 						<input
 							className="components-text-control__input"
 							id={ verticalPositionId }
