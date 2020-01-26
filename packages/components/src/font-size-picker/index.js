@@ -102,7 +102,7 @@ export default function FontSizePicker( {
 				{ fontSizes.length > 0 && (
 					<CustomSelectControl
 						className={ 'components-font-size-picker__select' }
-						label={ __( 'Preset Size' ) }
+						label={ __( 'Preset size' ) }
 						options={ options }
 						value={
 							options.find( ( option ) => option.key === currentSelectValue ) ||
