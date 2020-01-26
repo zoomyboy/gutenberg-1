@@ -188,7 +188,7 @@ class MediaTextEdit extends Component {
 		const colorSettings = [ {
 			value: backgroundColor.color,
 			onChange: setBackgroundColor,
-			label: __( 'Background Color' ),
+			label: __( 'Background color' ),
 		} ];
 		const toolbarControls = [ {
 			icon: 'align-pull-left',

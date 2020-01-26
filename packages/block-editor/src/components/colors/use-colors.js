@@ -267,7 +267,7 @@ export default function __experimentalUseColors(
 				property = name, // E.g. 'backgroundColor'.
 				className,
 
-				panelLabel = startCase( name ), // E.g. 'Background Color'.
+				panelLabel = startCase( name ), // E.g. 'Background color'.
 				componentName = panelLabel.replace( /\s/g, '' ), // E.g. 'BackgroundColor'.
 
 				color = colorConfig.color,

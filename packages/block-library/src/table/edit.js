@@ -583,7 +583,7 @@ export class TableEdit extends Component {
 							{
 								value: backgroundColor.color,
 								onChange: setBackgroundColor,
-								label: __( 'Background Color' ),
+								label: __( 'Background color' ),
 								disableCustomColors: true,
 								colors: BACKGROUND_COLORS,
 							},
