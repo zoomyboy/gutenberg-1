@@ -97,7 +97,7 @@ function ColorGradientControlInner( {
 							isSecondary={ currentTab !== 'color' }
 							onClick={ () => ( setCurrentTab( 'color' ) ) }
 						>
-							{ __( 'Solid Color' ) }
+							{ __( 'Solid color' ) }
 						</Button>
 						<Button
 							isLarge
