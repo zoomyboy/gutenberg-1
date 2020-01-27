@@ -142,6 +142,21 @@ class InnerBlocks extends Component {
 		} = this.props;
 		const { templateInProcess } = this.state;
 
+		if ( templateInProcess ) {
+			return null;
+		}
+
+		const blockList =
+			<BlockList
+				rootClientId={ clientId }
+				{ ...props }
+			/>
+		;
+
+		if ( props.tagName ) {
+			return blockList;
+		}
+
 		const classes = classnames( 'block-editor-inner-blocks', {
 			'has-overlay': enableClickThrough && hasOverlay,
 			'is-capturing-toolbar': captureToolbars,
@@ -149,12 +164,7 @@ class InnerBlocks extends Component {
 
 		return (
 			<div className={ classes }>
-				{ ! templateInProcess && (
-					<BlockList
-						rootClientId={ clientId }
-						{ ...props }
-					/>
-				) }
+				{ blockList }
 			</div>
 		);
 	}

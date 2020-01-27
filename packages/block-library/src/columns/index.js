@@ -24,6 +24,7 @@ export const settings = {
 	supports: {
 		align: [ 'wide', 'full' ],
 		html: false,
+		lightBlockWrapper: true,
 	},
 	patterns,
 	example: {

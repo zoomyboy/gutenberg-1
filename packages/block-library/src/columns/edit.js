@@ -18,6 +18,7 @@ import {
 	BlockControls,
 	__experimentalBlockPatternPicker,
 	BlockVerticalAlignmentToolbar,
+	__experimentalBlock as Block,
 } from '@wordpress/block-editor';
 import {
 	withDispatch,
@@ -85,11 +86,12 @@ function ColumnsEditContainer( {
 					value={ verticalAlignment }
 				/>
 			</BlockControls>
-			<div className={ classes }>
-				<InnerBlocks
-					templateLock="all"
-					allowedBlocks={ ALLOWED_BLOCKS } />
-			</div>
+			<InnerBlocks
+				templateLock="all"
+				allowedBlocks={ ALLOWED_BLOCKS }
+				tagName={ Block.div }
+				className={ classes }
+			/>
 		</>
 	);
 }
