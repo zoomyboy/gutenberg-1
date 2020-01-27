@@ -212,7 +212,7 @@ const ColumnsEdit = ( props ) => {
 		);
 	}
 
-	return (
+	return <Block.div>
 		<__experimentalBlockPatternPicker
 			icon={ get( blockType, [ 'icon', 'src' ] ) }
 			label={ get( blockType, [ 'title' ] ) }
@@ -229,7 +229,8 @@ const ColumnsEdit = ( props ) => {
 				}
 			} }
 			allowSkip
-		/> );
+		/>
+	</Block.div>;
 };
 
 export default ColumnsEdit;

@@ -72,7 +72,7 @@ function ColumnEdit( {
 				templateLock={ false }
 				renderAppender={ (
 					hasChildBlocks ?
-						undefined :
+						false :
 						() => <InnerBlocks.ButtonBlockAppender />
 				) }
 				tagName={ Block.div }
