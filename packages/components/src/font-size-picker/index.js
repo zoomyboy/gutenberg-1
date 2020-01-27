@@ -96,7 +96,7 @@ export default function FontSizePicker( {
 	return (
 		<fieldset className="components-font-size-picker">
 			<legend className="screen-reader-text">
-				{ __( 'Font Size' ) }
+				{ __( 'Font size' ) }
 			</legend>
 			<div className="components-font-size-picker__controls">
 				{ fontSizes.length > 0 && (
