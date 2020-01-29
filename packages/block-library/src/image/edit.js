@@ -417,7 +417,7 @@ export class ImageEdit extends Component {
 		const getInspectorControls = ( imageWidth, imageHeight ) => (
 			<>
 				<InspectorControls>
-					<PanelBody title={ __( 'Image Settings' ) }>
+					<PanelBody title={ __( 'Image settings' ) }>
 						<TextareaControl
 							label={ __( 'Alt text (alternative text)' ) }
 							value={ alt }
