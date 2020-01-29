@@ -8,7 +8,7 @@ exports[`Storyshots Components/Animate Appear Bottom Left 1`] = `
     className="components-notice__content"
   >
     <p>
-      Appear animation. Origin:
+      Appear animation. Origin: 
       bottom left
       .
     </p>
@@ -45,7 +45,7 @@ exports[`Storyshots Components/Animate Appear Bottom Right 1`] = `
     className="components-notice__content"
   >
     <p>
-      Appear animation. Origin:
+      Appear animation. Origin: 
       bottom right
       .
     </p>
@@ -82,7 +82,7 @@ exports[`Storyshots Components/Animate Appear Top Left 1`] = `
     className="components-notice__content"
   >
     <p>
-      Appear animation. Origin:
+      Appear animation. Origin: 
       top left
       .
     </p>
@@ -119,7 +119,7 @@ exports[`Storyshots Components/Animate Appear Top Right 1`] = `
     className="components-notice__content"
   >
     <p>
-      Appear animation. Origin:
+      Appear animation. Origin: 
       top right
       .
     </p>
@@ -2044,7 +2044,7 @@ exports[`Storyshots Components/ColorPalette Default 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Custom Color
+        Custom color
       </button>
     </div>
     <button
@@ -2138,7 +2138,7 @@ exports[`Storyshots Components/ColorPalette With Knobs 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Custom Color
+        Custom color
       </button>
     </div>
     <button
@@ -2548,12 +2548,12 @@ exports[`Storyshots Components/CustomSelectControl Default 1`] = `
     htmlFor="downshift-null-toggle-button"
     id="downshift-null-label"
   >
-    Font Size
+    Font size
   </label>
   <button
     aria-expanded={false}
     aria-haspopup="listbox"
-    aria-label="Font Size"
+    aria-label="Font size"
     className="components-button components-custom-select-control__button is-small"
     id="downshift-null-toggle-button"
     onClick={[Function]}
@@ -2609,7 +2609,7 @@ exports[`Storyshots Components/Dashicon Default 1`] = `
 exports[`Storyshots Components/Draggable Default 1`] = `
 <div>
   <p>
-    Is Dragging?
+    Is Dragging? 
     No
   </p>
   <div
@@ -3073,7 +3073,7 @@ exports[`Storyshots Components/FontSizePicker Default 1`] = `
   <legend
     className="screen-reader-text"
   >
-    Font Size
+    Font size
   </legend>
   <div
     className="components-font-size-picker__controls"
@@ -3086,12 +3086,12 @@ exports[`Storyshots Components/FontSizePicker Default 1`] = `
         htmlFor="downshift-null-toggle-button"
         id="downshift-null-label"
       >
-        Preset Size
+        Preset size
       </label>
       <button
         aria-expanded={false}
         aria-haspopup="listbox"
-        aria-label="Preset Size"
+        aria-label="Preset size"
         className="components-button components-custom-select-control__button is-small"
         id="downshift-null-toggle-button"
         onClick={[Function]}
@@ -3161,7 +3161,7 @@ exports[`Storyshots Components/FontSizePicker With Slider 1`] = `
   <legend
     className="screen-reader-text"
   >
-    Font Size
+    Font size
   </legend>
   <div
     className="components-font-size-picker__controls"
@@ -3174,12 +3174,12 @@ exports[`Storyshots Components/FontSizePicker With Slider 1`] = `
         htmlFor="downshift-null-toggle-button"
         id="downshift-null-label"
       >
-        Preset Size
+        Preset size
       </label>
       <button
         aria-expanded={false}
         aria-haspopup="listbox"
-        aria-label="Preset Size"
+        aria-label="Preset size"
         className="components-button components-custom-select-control__button is-small"
         id="downshift-null-toggle-button"
         onClick={[Function]}
@@ -3293,7 +3293,7 @@ exports[`Storyshots Components/FontSizePicker Without Custom Sizes 1`] = `
   <legend
     className="screen-reader-text"
   >
-    Font Size
+    Font size
   </legend>
   <div
     className="components-font-size-picker__controls"
@@ -3306,12 +3306,12 @@ exports[`Storyshots Components/FontSizePicker Without Custom Sizes 1`] = `
         htmlFor="downshift-null-toggle-button"
         id="downshift-null-label"
       >
-        Preset Size
+        Preset size
       </label>
       <button
         aria-expanded={false}
         aria-haspopup="listbox"
-        aria-label="Preset Size"
+        aria-label="Preset size"
         className="components-button components-custom-select-control__button is-small"
         id="downshift-null-toggle-button"
         onClick={[Function]}
@@ -4222,7 +4222,7 @@ exports[`Storyshots Components/Popover Positioning 1`] = `
     </p>
     <p>
       The
-
+       
       <strong
         style={
           Object {
@@ -4232,12 +4232,12 @@ exports[`Storyshots Components/Popover Positioning 1`] = `
       >
         pink bordered
       </strong>
-
+       
       element is a parent.
     </p>
     <p>
       The
-
+       
       <strong
         style={
           Object {
@@ -4247,8 +4247,8 @@ exports[`Storyshots Components/Popover Positioning 1`] = `
       >
         cyan bordered
       </strong>
-
-      element is a sibling to
+       
+      element is a sibling to 
       <strong>
         Popover
       </strong>
@@ -4897,7 +4897,7 @@ exports[`Storyshots Components/ScrollLock Default 1`] = `
         Toggle Scroll Lock
       </button>
       <p>
-        Scroll locked:
+        Scroll locked: 
         <strong>
           No
         </strong>
@@ -4996,7 +4996,7 @@ exports[`Storyshots Components/TabPanel Default 1`] = `
     tabIndex="0"
   >
     <p>
-      Selected tab:
+      Selected tab: 
       Tab 1
     </p>
   </div>
@@ -5687,11 +5687,11 @@ Array [
   </div>,
   <div>
     This text will
-
+     
     <span
       className="components-visually-hidden"
     >
-      but not inline
+      but not inline 
     </span>
      always show.
   </div>,
