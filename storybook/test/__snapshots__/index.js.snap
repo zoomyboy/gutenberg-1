@@ -2044,7 +2044,7 @@ exports[`Storyshots Components/ColorPalette Default 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Custom color
+        Custom Color
       </button>
     </div>
     <button
@@ -2138,7 +2138,7 @@ exports[`Storyshots Components/ColorPalette With Knobs 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Custom color
+        Custom Color
       </button>
     </div>
     <button
@@ -2548,13 +2548,13 @@ exports[`Storyshots Components/CustomSelectControl Default 1`] = `
     htmlFor="downshift-null-toggle-button"
     id="downshift-null-label"
   >
-    Font size
+    Font Size
   </label>
   <button
     aria-expanded={false}
     aria-haspopup="listbox"
-    aria-label="Font size"
-    className="components-button components-custom-select-control__button"
+    aria-label="Font Size"
+    className="components-button components-custom-select-control__button is-small"
     id="downshift-null-toggle-button"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -3073,7 +3073,7 @@ exports[`Storyshots Components/FontSizePicker Default 1`] = `
   <legend
     className="screen-reader-text"
   >
-    Font size
+    Font Size
   </legend>
   <div
     className="components-font-size-picker__controls"
@@ -3086,13 +3086,13 @@ exports[`Storyshots Components/FontSizePicker Default 1`] = `
         htmlFor="downshift-null-toggle-button"
         id="downshift-null-label"
       >
-        Preset size
+        Preset Size
       </label>
       <button
         aria-expanded={false}
         aria-haspopup="listbox"
-        aria-label="Preset size"
-        className="components-button components-custom-select-control__button"
+        aria-label="Preset Size"
+        className="components-button components-custom-select-control__button is-small"
         id="downshift-null-toggle-button"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -3161,7 +3161,7 @@ exports[`Storyshots Components/FontSizePicker With Slider 1`] = `
   <legend
     className="screen-reader-text"
   >
-    Font size
+    Font Size
   </legend>
   <div
     className="components-font-size-picker__controls"
@@ -3174,13 +3174,13 @@ exports[`Storyshots Components/FontSizePicker With Slider 1`] = `
         htmlFor="downshift-null-toggle-button"
         id="downshift-null-label"
       >
-        Preset size
+        Preset Size
       </label>
       <button
         aria-expanded={false}
         aria-haspopup="listbox"
-        aria-label="Preset size"
-        className="components-button components-custom-select-control__button"
+        aria-label="Preset Size"
+        className="components-button components-custom-select-control__button is-small"
         id="downshift-null-toggle-button"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -3293,7 +3293,7 @@ exports[`Storyshots Components/FontSizePicker Without Custom Sizes 1`] = `
   <legend
     className="screen-reader-text"
   >
-    Font size
+    Font Size
   </legend>
   <div
     className="components-font-size-picker__controls"
@@ -3306,13 +3306,13 @@ exports[`Storyshots Components/FontSizePicker Without Custom Sizes 1`] = `
         htmlFor="downshift-null-toggle-button"
         id="downshift-null-label"
       >
-        Preset size
+        Preset Size
       </label>
       <button
         aria-expanded={false}
         aria-haspopup="listbox"
-        aria-label="Preset size"
-        className="components-button components-custom-select-control__button"
+        aria-label="Preset Size"
+        className="components-button components-custom-select-control__button is-small"
         id="downshift-null-toggle-button"
         onClick={[Function]}
         onKeyDown={[Function]}
