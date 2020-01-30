@@ -69,10 +69,11 @@ class RichTextWrapper extends Component {
 		this.onPaste = this.onPaste.bind( this );
 		this.onDelete = this.onDelete.bind( this );
 		this.inputRule = this.inputRule.bind( this );
+		this.getAllowedFormats.EMPTY_ARRAY = [];
 	}
 
 	onEnter( { value, onChange, shiftKey } ) {
-		const { onReplace, onSplit, multiline, markAutomaticChange } = this.props;
+		const { onReplace, onSplit, multiline, markAutomaticChange, disableLineBreaks } = this.props;
 		const canSplit = onReplace && onSplit;
 
 		if ( onReplace ) {
@@ -89,14 +90,18 @@ class RichTextWrapper extends Component {
 
 		if ( multiline ) {
 			if ( shiftKey ) {
-				onChange( insert( value, '\n' ) );
+				if ( ! disableLineBreaks ) {
+					onChange( insert( value, '\n' ) );
+				}
 			} else if ( canSplit && isEmptyLine( value ) ) {
 				this.onSplit( value );
 			} else {
 				onChange( insertLineSeparator( value ) );
 			}
 		} else if ( shiftKey || ! canSplit ) {
-			onChange( insert( value, '\n' ) );
+			if ( ! disableLineBreaks ) {
+				onChange( insert( value, '\n' ) );
+			}
 		} else {
 			this.onSplit( value );
 		}
@@ -294,7 +299,15 @@ class RichTextWrapper extends Component {
 	}
 
 	getAllowedFormats() {
-		const { allowedFormats, formattingControls } = this.props;
+		const {
+			allowedFormats,
+			formattingControls,
+			__unstableDisableFormats: disableFormats,
+		} = this.props;
+
+		if ( disableFormats ) {
+			return this.getAllowedFormats.EMPTY_ARRAY;
+		}
 
 		if ( ! allowedFormats && ! formattingControls ) {
 			return;
@@ -356,6 +369,7 @@ class RichTextWrapper extends Component {
 			preserveWhiteSpace,
 			disabled,
 			forwardedRef,
+			__unstableDisableFormats,
 			...props
 		} = this.props;
 		const multilineTag = getMultilineTag( multiline );
@@ -403,6 +417,7 @@ class RichTextWrapper extends Component {
 				__unstableMarkAutomaticChange={ markAutomaticChange }
 				__unstableDidAutomaticChange={ didAutomaticChange }
 				__unstableUndo={ undo }
+				__unstableDisableFormats={ __unstableDisableFormats }
 				style={ style }
 				preserveWhiteSpace={ preserveWhiteSpace }
 				disabled={ disabled }
