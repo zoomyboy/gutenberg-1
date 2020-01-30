@@ -170,11 +170,12 @@ class ButtonEdit extends Component {
 		setAttributes( { url: value } );
 	}
 
-	onLayout( { nativeEvent } ) {
-		const { width } = nativeEvent.layout;
+	onLayout( { } ) {
 		const { marginRight, paddingRight, borderWidth } = styles.button;
+		const { parentWidth } = this.props;
 		const buttonSpacing = 2 * ( marginRight + paddingRight + borderWidth );
-		this.setState( { maxWidth: width - buttonSpacing } );
+
+		this.setState( { maxWidth: parentWidth - buttonSpacing - 32 } );
 	}
 
 	onChangeOpenInNewTab( value ) {

@@ -35,6 +35,11 @@ export class BlockList extends Component {
 		this.scrollViewInnerRef = this.scrollViewInnerRef.bind( this );
 		this.addBlockToEndOfPost = this.addBlockToEndOfPost.bind( this );
 		this.shouldFlatListPreventAutomaticScroll = this.shouldFlatListPreventAutomaticScroll.bind( this );
+		this.onLayout = this.onLayout.bind( this );
+
+		this.state = {
+			maxWidth: null,
+		};
 	}
 
 	addBlockToEndOfPost( newBlock ) {
@@ -51,6 +56,12 @@ export class BlockList extends Component {
 
 	shouldFlatListPreventAutomaticScroll() {
 		return this.props.isBlockInsertionPointVisible;
+	}
+
+	onLayout( { nativeEvent } ) {
+		const { width } = nativeEvent.layout;
+
+		this.setState( { maxWidth: width } );
 	}
 
 	renderDefaultBlockAppender() {
@@ -84,6 +95,7 @@ export class BlockList extends Component {
 			<View
 				style={ { flex: isRootList ? 1 : 0 } }
 				onAccessibilityEscape={ clearSelectedBlock }
+				onLayout={ this.onLayout }
 			>
 				<KeyboardAwareFlatList
 					{ ...( Platform.OS === 'android' ? { removeClippedSubviews: false } : {} ) } // Disable clipping on Android to fix focus losing. See https://github.com/wordpress-mobile/gutenberg-mobile/pull/741#issuecomment-472746541
@@ -102,6 +114,7 @@ export class BlockList extends Component {
 					ListHeaderComponent={ ! isReadOnly && header }
 					ListEmptyComponent={ ! isReadOnly && this.renderDefaultBlockAppender }
 					ListFooterComponent={ ! isReadOnly && withFooter && this.renderBlockListFooter }
+					style={ this.props.__experimentalMoverDirection === 'horizontal' && { flexDirection: 'row', flexWrap: 'wrap' } }
 				/>
 
 				{ renderAppender && blockClientIds.length > 0 && (
@@ -145,6 +158,7 @@ export class BlockList extends Component {
 							rootClientId={ this.props.rootClientId }
 							onCaretVerticalPositionChange={ this.onCaretVerticalPositionChange }
 							isSmallScreen={ ! this.props.isFullyBordered }
+							parentWidth={ this.state.maxWidth }
 						/> ) }
 					{ shouldShowInsertionPointAfter( clientId ) && <BlockInsertionPoint /> }
 				</View>
