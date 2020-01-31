@@ -82,6 +82,28 @@ const templateIcon = (
 const EMPTY_ARRAY = [];
 
 /**
+ * Return the ID of the last Global Styles Custom Post Type.
+ *
+ * @param {Object} state
+ *
+ * @return {number|null} Global Styles ID.
+ */
+export function __experimentalGetGlobalStylesId( state ) {
+	return get( state, 'settings.__experimentalGlobalStylesId', null );
+}
+
+/**
+ * Return the Global Styles base tokens.
+ *
+ * @param {Object} state
+ *
+ * @return {Object} Global Styles object.
+ */
+export function __experimentalGetGlobalStylesBaseTokens( state ) {
+	return get( state, 'settings.__experimentalGlobalStylesBaseTokens', {} );
+}
+
+/**
  * Returns a block's name given its client ID, or null if no block exists with
  * the client ID.
  *

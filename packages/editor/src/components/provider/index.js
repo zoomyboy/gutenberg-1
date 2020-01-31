@@ -112,6 +112,8 @@ class EditorProvider extends Component {
 				'__experimentalEnableFullSiteEditing',
 				'__experimentalEnableFullSiteEditingDemo',
 				'__experimentalEnablePageTemplates',
+				'__experimentalGlobalStylesId',
+				'__experimentalGlobalStylesBaseTokens',
 				'showInserterHelpPanel',
 				'gradients',
 			] ),
