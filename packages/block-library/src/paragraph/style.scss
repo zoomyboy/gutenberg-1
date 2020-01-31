@@ -35,3 +35,7 @@ p.has-background {
 p.has-text-color a {
 	color: inherit;
 }
+
+.wp-gs p {
+	color: var(--wp-gs-core-paragraph-color-text);
+}
