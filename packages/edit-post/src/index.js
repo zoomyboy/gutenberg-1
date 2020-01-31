@@ -20,6 +20,9 @@ import './hooks';
 import './plugins';
 import './store';
 import Editor from './editor';
+import domUpdater from './dom-updater';
+
+domUpdater();
 
 /**
  * Reinitializes the editor after the user chooses to reboot the editor after
