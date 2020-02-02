@@ -337,7 +337,7 @@ function BlockListBlock( {
 }
 
 const applyWithSelect = withSelect(
-	( select, { clientId, rootClientId, isLargeViewport } ) => {
+	( select, { clientId, rootClientId, isLargeViewport, isLocked } ) => {
 		const {
 			isBlockSelected,
 			isAncestorMultiSelected,
@@ -393,7 +393,7 @@ const applyWithSelect = withSelect(
 				: null,
 			isEmptyDefaultBlock:
 				name && isUnmodifiedDefaultBlock( { name, attributes } ),
-			isLocked: !! templateLock,
+			isLocked: isLocked || !! templateLock,
 			isFocusMode: focusMode && isLargeViewport,
 			isNavigationMode: isNavigationMode(),
 			isRTL,
