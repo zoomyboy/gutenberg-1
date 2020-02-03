@@ -87,8 +87,11 @@ export class BlockList extends Component {
 	}
 
 	shouldShowInnerBlockAppender() {
-		const { blockClientIds, renderAppender } = this.props;
-		return renderAppender && blockClientIds.length > 0;
+		const { blockClientIds, renderAppender, isSelectedButtonsBlock } = this.props;
+		if ( ! isSelectedButtonsBlock ) {
+			return renderAppender && blockClientIds.length > 0;
+		}
+		return false;
 	}
 
 	render() {
@@ -98,7 +101,6 @@ export class BlockList extends Component {
 			isFullyBordered,
 			title,
 			header,
-			withFooter = true,
 			isReadOnly,
 			isRootList,
 		} = this.props;
@@ -125,7 +127,7 @@ export class BlockList extends Component {
 					title={ title }
 					ListHeaderComponent={ ! isReadOnly && header }
 					ListEmptyComponent={ ! isReadOnly && this.renderDefaultBlockAppender }
-					ListFooterComponent={ ! isReadOnly && withFooter && this.renderBlockListFooter }
+					ListFooterComponent={ this.renderBlockListFooter }
 					style={
 						this.props.__experimentalMoverDirection === 'horizontal' && {
 							flexDirection: 'row',
@@ -177,18 +179,25 @@ export class BlockList extends Component {
 
 	renderBlockListFooter() {
 		const paragraphBlock = createBlock( 'core/paragraph' );
-		return (
-			<>
-				<TouchableWithoutFeedback
-					onPress={ () => {
-						this.addBlockToEndOfPost( paragraphBlock );
-					} }
-				>
-					<View style={ styles.blockListFooter } />
-				</TouchableWithoutFeedback>
-				<__experimentalBlockListFooter.Slot />
-			</>
-		);
+		const { isReadOnly, withFooter = true, isSelectedButtonsBlock, renderAppender } = this.props;
+
+		if ( ! isReadOnly && withFooter ) {
+			return (
+				<>
+					<TouchableWithoutFeedback
+						onPress={ () => {
+							this.addBlockToEndOfPost( paragraphBlock );
+						} }
+					>
+						<View style={ styles.blockListFooter } />
+					</TouchableWithoutFeedback>
+					<__experimentalBlockListFooter.Slot />
+				</>
+			);
+		} else if ( isSelectedButtonsBlock && renderAppender ) {
+			return renderAppender();
+		}
+		return null;
 	}
 }
 
@@ -201,9 +210,11 @@ export default compose( [
 			getBlockInsertionPoint,
 			isBlockInsertionPointVisible,
 			getSettings,
+			getBlock,
 		} = select( 'core/block-editor' );
 
 		const selectedBlockClientId = getSelectedBlockClientId();
+		const selectedBlock = getBlock( selectedBlockClientId );
 		const blockClientIds = getBlockOrder( rootClientId );
 		const insertionPoint = getBlockInsertionPoint();
 		const blockInsertionPointIsVisible = isBlockInsertionPointVisible();
@@ -228,6 +239,7 @@ export default compose( [
 			);
 		};
 
+		const isSelectedButtonsBlock = selectedBlock && selectedBlock.name === 'core/buttons';
 		const isReadOnly = getSettings().readOnly;
 
 		return {
@@ -236,9 +248,9 @@ export default compose( [
 			isBlockInsertionPointVisible: isBlockInsertionPointVisible(),
 			shouldShowInsertionPointBefore,
 			shouldShowInsertionPointAfter,
-			selectedBlockClientId,
 			isReadOnly,
 			isRootList: rootClientId === undefined,
+			isSelectedButtonsBlock,
 		};
 	} ),
 	withDispatch( ( dispatch ) => {

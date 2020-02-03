@@ -11,12 +11,12 @@ import { name as buttonBlockName } from '../button/';
 const ALLOWED_BLOCKS = [ buttonBlockName ];
 const BUTTONS_TEMPLATE = [ [ 'core/button' ] ];
 
-function ButtonsEdit() {
+function ButtonsEdit( { isSelected } ) {
 	return (
 		<InnerBlocks
 			allowedBlocks={ ALLOWED_BLOCKS }
 			template={ BUTTONS_TEMPLATE }
-			renderAppender={ InnerBlocks.ButtonBlockAppender }
+			renderAppender={ isSelected && InnerBlocks.ButtonsBlockAppender }
 			__experimentalMoverDirection="horizontal"
 		/>
 	);
