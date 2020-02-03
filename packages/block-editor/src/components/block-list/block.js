@@ -39,7 +39,7 @@ import BlockCrashWarning from './block-crash-warning';
 import BlockCrashBoundary from './block-crash-boundary';
 import BlockHtml from './block-html';
 import { isInsideRootBlock } from '../../utils/dom';
-import useMovingAnimation from './moving-animation';
+import useMovingAnimation from '../use-moving-animation';
 import { Context, BlockNodes } from './root-container';
 
 function BlockListBlock( {
@@ -310,9 +310,9 @@ function BlockListBlock( {
 			style={
 				wrapperProps && wrapperProps.style
 					? {
-							...wrapperProps.style,
-							...animationStyle,
-					  }
+						...wrapperProps.style,
+						...animationStyle,
+					}
 					: animationStyle
 			}
 		>

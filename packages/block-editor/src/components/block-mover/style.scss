@@ -16,7 +16,8 @@
 			@include edit-post__fade-in-animation;
 		}
 
-		.block-editor-block-mover__control {
+		.block-editor-block-mover-button,
+		.block-editor-block-mover__drag-handle {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -56,7 +57,7 @@
 	}
 }
 
-.block-editor-block-mover__control-drag-handle {
+.block-editor-block-mover__drag-handle {
 	cursor: move; // Fallback for IE/Edge < 14
 	cursor: grab;
 	fill: currentColor;
@@ -75,7 +76,7 @@
 	}
 }
 
-.block-editor-block-mover__description {
+.block-editor-block-mover-button__description {
 	display: none;
 }
 

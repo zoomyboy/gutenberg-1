@@ -48,7 +48,7 @@ describe( 'BlockMover', () => {
 			expect( drag.type().name ).toBe( 'BlockDraggable' );
 			expect( moveDown.name() ).toBe( 'ForwardRef(Button)' );
 			expect( moveUp.props() ).toMatchObject( {
-				className: 'block-editor-block-mover__control',
+				className: 'block-editor-block-mover-button',
 				onClick: undefined,
 				label: 'Move up',
 				icon: chevronUp,
@@ -57,7 +57,7 @@ describe( 'BlockMover', () => {
 					'block-editor-block-mover__up-description-1',
 			} );
 			expect( moveDown.props() ).toMatchObject( {
-				className: 'block-editor-block-mover__control',
+				className: 'block-editor-block-mover-button',
 				onClick: undefined,
 				label: 'Move down',
 				icon: chevronDown,
