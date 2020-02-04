@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { noop, startsWith } from 'lodash';
+import { noop, startsWith, pick, map } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -211,6 +211,19 @@ function LinkControl( {
 		setIsEditingLink( false );
 	}
 
+	/**
+	 * Given a selected suggestion, returns the merged next value. The merged
+	 * value includes settings values from the previous values.
+	 *
+	 * @param {WPLinkControlValue} suggestion Next value suggestion.
+	 *
+	 * @return {WPLinkControlValue} Merged next value.
+	 */
+	const getNextValue = ( suggestion ) => ( {
+		...pick( value, map( settings, 'id' ) ),
+		...suggestion,
+	} );
+
 	// Effects
 	const getSearchHandler = useCallback(
 		( val, args ) => {
@@ -292,7 +305,7 @@ function LinkControl( {
 							) }
 							suggestion={ suggestion }
 							onClick={ () => {
-								onChange( { ...value, ...suggestion } );
+								onChange( getNextValue( suggestion ) );
 								stopEditing();
 							} }
 							isSelected={ index === selectedSuggestion }
@@ -318,7 +331,7 @@ function LinkControl( {
 					value={ inputValue }
 					onChange={ onInputChange }
 					onSelect={ ( suggestion ) => {
-						onChange( { ...value, ...suggestion } );
+						onChange( getNextValue( suggestion ) );
 						stopEditing();
 					} }
 					renderSuggestions={ renderSearchResults }
