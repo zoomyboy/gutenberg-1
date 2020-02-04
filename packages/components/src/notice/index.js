@@ -92,6 +92,7 @@ function Notice( {
 						{
 							className: buttonCustomClasses,
 							label,
+							isPrimary,
 							noDefaultClasses = false,
 							onClick,
 							url,
@@ -102,6 +103,7 @@ function Notice( {
 							<Button
 								key={ index }
 								href={ url }
+								isPrimary={ isPrimary }
 								isSecondary={ ! noDefaultClasses && ! url }
 								isLink={ ! noDefaultClasses && !! url }
 								onClick={ url ? undefined : onClick }
