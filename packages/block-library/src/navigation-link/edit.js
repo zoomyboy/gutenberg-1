@@ -48,6 +48,7 @@ function NavigationLinkEdit( {
 	insertLinkBlock,
 	navigationBlockAttributes,
 	saveEntityRecord,
+	userCanCreatePages = false,
 } ) {
 	const {
 		label,
@@ -128,6 +129,43 @@ function NavigationLinkEdit( {
 		range.selectNodeContents( ref.current );
 		selection.removeAllRanges();
 		selection.addRange( range );
+	}
+
+	function handleCreateEntity( type, entityTitle ) {
+		return saveEntityRecord( 'postType', type, {
+			title: entityTitle,
+			status: 'publish',
+		} ).then( ( entity ) => {
+			// `entity` may not reject the Promise
+			// but may still be invalid. Here we
+			// tests for unexpected values and throw accordingly.
+			if ( null === entity || undefined === entity ) {
+				throw new TypeError(
+					'API response returned invalid entity.',
+					entity
+				);
+			}
+
+			const requiredEntityProps = [ 'id', 'title', 'link' ];
+
+			const entityMissingProperty = requiredEntityProps.find(
+				( entityProp ) => ! entity.hasOwnProperty( entityProp )
+			);
+
+			if ( Boolean( entityMissingProperty ) ) {
+				throw new TypeError(
+					`API response returned invalid entity. Missing required property "${ entityMissingProperty }".`,
+					entity
+				);
+			}
+
+			return {
+				id: entity.id,
+				type,
+				title: entity.title.raw, // TODO: use raw or rendered?
+				url: entity.link,
+			};
+		} );
 	}
 
 	return (
@@ -253,33 +291,10 @@ function NavigationLinkEdit( {
 								value={ link }
 								showInitialSuggestions={ true }
 								showCreateEntity={ true }
-								createEntity={ ( type, entityTitle ) =>
-									saveEntityRecord( 'postType', type, {
-										title: entityTitle,
-										status: 'publish',
-									} ).then( ( entity ) => {
-										// `entity` may not reject the Promise
-										// but may still be invalid. Here we
-										// tests for unexpected values and throw accordingly.
-										if ( null === entity || undefined === entity ) {
-											throw new TypeError( 'API response returned invalid entity.', entity );
-										}
-
-										const requiredEntityProps = ['id', 'title', 'link'];
-
-										const entityMissingProperty = requiredEntityProps.find(entityProp => !entity.hasOwnProperty(entityProp));
-
-										if (Boolean(entityMissingProperty)) {
-											throw new TypeError(`API response returned invalid entity. Missing required property "${entityMissingProperty}".`, entity);
-										}
-
-										return {
-											id: entity.id,
-											type,
-											title: entity.title.raw, // TODO: use raw or rendered?
-											url: entity.link,
-										};
-									} )
+								createEntity={
+									userCanCreatePages
+										? handleCreateEntity
+										: undefined
 								}
 								onChange={ ( {
 									title: newTitle = '',
@@ -353,11 +368,17 @@ export default compose( [
 			!! navigationBlockAttributes.showSubmenuIcon && hasDescendants;
 		const isParentOfSelectedBlock = hasSelectedInnerBlock( clientId, true );
 
+		const userCanCreatePages = select( 'core' ).canUser(
+			'create',
+			'pages'
+		);
+
 		return {
 			isParentOfSelectedBlock,
 			hasDescendants,
 			showSubmenuIcon,
 			navigationBlockAttributes,
+			userCanCreatePages,
 		};
 	} ),
 	withDispatch( ( dispatch, ownProps, registry ) => {
