@@ -33,6 +33,7 @@ export default function LinkViewer( {
 	onEditLinkClick,
 	url,
 	urlLabel,
+	iconButton = true,
 	...props
 } ) {
 	return (
@@ -50,10 +51,13 @@ export default function LinkViewer( {
 			/>
 			{ onEditLinkClick && (
 				<Button
-					icon="edit"
-					label={ __( 'Edit' ) }
+					icon={ iconButton ? 'edit' : false }
+					isSecondary={ iconButton ? false : true }
 					onClick={ onEditLinkClick }
-				/>
+					className="block-editor-link-control__search-item-action block-editor-link-control__search-item-action--edit"
+				>
+					{ iconButton ? '' : __( 'Edit' ) }
+				</Button>
 			) }
 		</div>
 	);
