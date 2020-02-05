@@ -228,8 +228,8 @@ function LinkControl( {
 		return maybeURL( val )
 			? results
 			: results.concat( {
-					title: val, // // must match the existing `<input>`s text value
-					url: '', // placeholder - not used when creating
+					title: val, // must match the existing `<input>`s text value
+					url: val, // must match the existing `<input>`s text value
 					type: CREATE_TYPE,
 			  } );
 	};
