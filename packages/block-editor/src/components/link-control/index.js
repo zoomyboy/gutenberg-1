@@ -94,6 +94,7 @@ function LinkControl( {
 	settings,
 	onChange = noop,
 	showInitialSuggestions,
+	forceIsEditingLink,
 } ) {
 	const wrapperNode = useRef();
 	const instanceId = useInstanceId( LinkControl );
@@ -101,7 +102,7 @@ function LinkControl( {
 		( value && value.url ) || ''
 	);
 	const [ isEditingLink, setIsEditingLink ] = useState(
-		! value || ! value.url
+		forceIsEditingLink || ! value || ! value.url
 	);
 	const isEndingEditWithFocus = useRef( false );
 	const { fetchSearchSuggestions } = useSelect( ( select ) => {
@@ -113,6 +114,12 @@ function LinkControl( {
 	}, [] );
 	const displayURL =
 		( value && filterURLForDisplay( safeDecodeURI( value.url ) ) ) || '';
+
+	useEffect( () => {
+		if ( forceIsEditingLink !== isEditingLink ) {
+			setIsEditingLink( forceIsEditingLink );
+		}
+	}, [ forceIsEditingLink ] );
 
 	useEffect( () => {
 		// When `isEditingLink` is set to `false`, a focus loss could occur
