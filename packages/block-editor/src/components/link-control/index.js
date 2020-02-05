@@ -223,16 +223,17 @@ function LinkControl( {
 		// API. In addition promoting CREATE to a first class suggestion affords
 		// the a11y benefits afforded by `URLInput` to all suggestions (eg:
 		// keyboard handling, ARIA roles...etc).
-		// Note also that due to the flow of data and the nature of the
-		// controlled components the value of the `title` property must correspond
+		//
+		// Note also that the value of the `title` and `url` properties must correspond
 		// to the text value of the `<input>`. This is because `title` is used
-		// when creating the entity.
+		// when creating the entity. Similarly `url` is used when using keyboard to select
+		// the suggestion (the <form> `onSubmit` handler falls-back to `url`).
 		return maybeURL( val )
 			? results
 			: results.concat( {
 					id: cleanForSlug( val ),
 					title: val, // // must match the existing `<input>`s text value
-					url: '', // placeholder - not used when creating
+					url: val, // must match the existing `<input>`s text value
 					type: CREATE_TYPE,
 			  } );
 	};
