@@ -34,6 +34,13 @@ Once Docker is installed and running, run this script to install WordPress, and 
 npm run env install
 ```
 
+You will then also have to build your local WordPress install by running
+
+```
+cd wordpress/
+npm run dev
+```
+
 #### Alternative Method: Using an Existing Local WordPress Install
 WordPress will be installed in the `wordpress` directory, if you need to access WordPress core files directly, you can find them there.
 
@@ -52,6 +59,7 @@ In Windows, you can set the `WP_DEVELOP_DIR` environment variable using the appr
     PowerShell: $env:WP_DEVELOP_DIR = "/path/to/wordpress-develop"
 	
 ### Step 2: Accessing and Configuring the Local WordPress Install
+
 #### Accessing the Local WordPress Install
 
 Whether you decided to use Docker or an existing local WordPress install, the WordPress installation should now be available at `http://localhost:8889` (**Username**: `admin`, **Password**: `password`).
