@@ -4829,6 +4829,41 @@ exports[`Storyshots Components/ResizableBox Default 1`] = `
 </div>
 `;
 
+exports[`Storyshots Components/RovingTabIndex Default 1`] = `
+<div
+  aria-label="Toolbar Example"
+  onKeyDown={[Function]}
+  role="toolbar"
+  style={
+    Object {
+      "display": "flex",
+    }
+  }
+>
+  <button
+    className="components-button is-primary"
+    onFocus={[Function]}
+    type="button"
+  >
+    Item 1
+  </button>
+  <button
+    className="components-button is-primary"
+    onFocus={[Function]}
+    type="button"
+  >
+    Item 2
+  </button>
+  <button
+    className="components-button is-primary"
+    onFocus={[Function]}
+    type="button"
+  >
+    Item 3
+  </button>
+</div>
+`;
+
 exports[`Storyshots Components/ScrollLock Default 1`] = `
 <div
   style={
@@ -5645,6 +5680,303 @@ exports[`Storyshots Components/ToolbarGroup With Controls Prop 1`] = `
     </button>
   </div>
 </div>
+`;
+
+exports[`Storyshots Components/TreeGrid Default 1`] = `
+<table
+  onKeyDown={[Function]}
+  role="treegrid"
+>
+  <tbody>
+    <tr
+      aria-level={1}
+      aria-posinset={1}
+      aria-setsize={2}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+        
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Homer
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+    <tr
+      aria-level={2}
+      aria-posinset={1}
+      aria-setsize={3}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+            ├ 
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Lisa
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+    <tr
+      aria-level={2}
+      aria-posinset={2}
+      aria-setsize={3}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+            ├ 
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Bart
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+    <tr
+      aria-level={2}
+      aria-posinset={3}
+      aria-setsize={3}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+            ├ 
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Maggie
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+    <tr
+      aria-level={1}
+      aria-posinset={2}
+      aria-setsize={2}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+        
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Ned
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+    <tr
+      aria-level={2}
+      aria-posinset={1}
+      aria-setsize={2}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+            ├ 
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Rod
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+    <tr
+      aria-level={2}
+      aria-posinset={2}
+      aria-setsize={2}
+      role="row"
+    >
+      <td
+        role="gridcell"
+      >
+            ├ 
+        <button
+          className="components-button is-primary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Todd
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Up
+        </button>
+      </td>
+      <td
+        role="gridcell"
+      >
+        <button
+          className="components-button is-secondary"
+          onFocus={[Function]}
+          type="button"
+        >
+          Vote Down
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 `;
 
 exports[`Storyshots Components/VisuallyHidden Default 1`] = `
